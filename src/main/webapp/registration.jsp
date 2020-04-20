@@ -6,6 +6,7 @@
 <head>
 <script>
 function validation()
+{
 var firstname=document.forms["register"]["firstName"].value;
 var lastname=document.forms["register"]["lastName"].value;
 var age=document.forms["register"]["age"].value;
@@ -15,52 +16,54 @@ var city=document.forms["register"]["city"].value;
 var state=document.forms["register"]["state"].value;
 var userid=document.forms["register"]["userId"].value;
 var password=document.forms["register"]["password"].value;
-if(firstname=" "|| firstname==null)
+if(firstname==" "|| firstname==null)
+{
+alert("please update the highlighted mandatory fields");
+document.forms["register"]["firstName"].style.borderColor="red";
+return false;
+}
+else if(lastname==" "|| lastname==null)
 {
 alert("please update the highlighted mandatory fields");
 return false;
 }
-else if(lastname=" "|| lastname==null)
+else if(age==0|| age==null)
 {
 alert("please update the highlighted mandatory fields");
 return false;
 }
-else if(age=" "|| age==null)
+else if(gender==" "|| gender==null)
 {
 alert("please update the highlighted mandatory fields");
 return false;
 }
-else if(gender=" "|| gender==null)
+else if(number==" "|| number==null)
 {
 alert("please update the highlighted mandatory fields");
 return false;
 }
-else if(number=" "|| number==null)
+else if(city==" "|| city==null)
+{
+alert("please update the highlighted mandatory fields");
+document.forms["register"]["city"].style.borderColor="red";
+return false;
+}
+else if(state==" "|| state==null)
 {
 alert("please update the highlighted mandatory fields");
 return false;
 }
-else if(city=" "|| city==null)
+else if(userid==" "|| userid==null)
 {
 alert("please update the highlighted mandatory fields");
 return false;
 }
-else if(state=" "|| state==null)
+else if(password==" "|| password==null)
 {
 alert("please update the highlighted mandatory fields");
 return false;
 }
-else if(userid=" "|| userid==null)
-{
-alert("please update the highlighted mandatory fields");
-return false;
 }
-else if(password=" "|| password==null)
-{
-alert("please update the highlighted mandatory fields");
-return false;
-}
-
 </script>
 <meta charset="ISO-8859-1">
 <title>Registration Page</title>
@@ -72,10 +75,10 @@ return false;
 </div>
 <div align="center">
 <div class="forms-data">
-<form:form name="register" action="/emp/verifyregister" method="post" modelAttribute="bankemployee" onsubmit="validation()" style="margin-top:50px;margin-left:30px;" >
+<form:form name="register" action="/emp/verifyregister" method="post" modelAttribute="bankemployee" onsubmit="return validation()" style="margin-top:50px;margin-left:30px;" >
 <table>
 <tr>
-<td>User Id</td>
+<td>User Id <b style="color: red"> * </b> </td>
 <td>
 <form:input path="userId" class="form-control"/>
 <br>
@@ -84,7 +87,7 @@ return false;
 </td>
 </tr>
 <tr>
-<td>First Name</td>
+<td>First Name  <b style="color: red"> * </b></td>
 <td>
 <form:input path="firstName" class="form-control"/>
 <br>
@@ -93,7 +96,7 @@ return false;
 </td>
 </tr>
 <tr>
-<td>Last Name</td>
+<td>Last Name  <b style="color: red"> * </b></td>
 <td>
 <form:input path="lastName" class="form-control"/>
 <br>
@@ -102,7 +105,7 @@ return false;
 </td>
 </tr>
 <tr>
-<td>Age</td>
+<td>Age  <b style="color: red"> * </b></td>
 <td>
 <form:input path="age" class="form-control"/>
 <br>
@@ -111,7 +114,7 @@ return false;
 </td>
 </tr>
 <tr>
-<td>Gender</td>
+<td>Gender  <b style="color: red"> * </b></td>
 <td>
 <form:input path="gender" class="form-control"/>
 <br>
@@ -120,7 +123,7 @@ return false;
 </td>
 </tr>
 <tr>
-<td>Contact Number</td>
+<td>Contact Number  <b style="color: red"> * </b> </td>
 <td>
 <form:input path="contactNumber" class="form-control"/>
 <br>
@@ -129,7 +132,7 @@ return false;
 </td>
 </tr>
 <tr>
-<td>City</td>
+<td>City  <b style="color: red"> * </b></td>
 <td>
 <form:input path="city" class="form-control"/>
 <br>
@@ -138,7 +141,7 @@ return false;
 </td>
 </tr>
 <tr>
-<td>State</td>
+<td>State  <b style="color: red"> * </b></td>
 <td>
 <form:input path="state" class="form-control"/>
 <br>
@@ -148,9 +151,9 @@ return false;
 </tr>
 
 <tr>
-<td>Password</td>
+<td>Password  <b style="color: red"> * </b></td>
 <td>
-<form:input path="password" class="form-control"/>
+<form:password path="password" class="form-control"/>
 <br>
 <form:errors path="password" cssClass="errors"></form:errors>
 <br>
