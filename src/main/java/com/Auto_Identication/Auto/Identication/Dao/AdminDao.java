@@ -10,5 +10,5 @@ import com.Auto_Identication.Auto.Identication.Models.Admin;
 public interface AdminDao extends JpaRepository<Admin, String>
 {
 public List<Admin> findAll();
-public Admin findByuserId(String userId);
+public Admin findByuserId(String userid);
 }

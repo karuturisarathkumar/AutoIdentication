@@ -1,5 +1,6 @@
 package com.Auto_Identication.Auto.Identication.Models;
 
+
 import javax.annotation.Generated;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -89,4 +90,5 @@ private String password;
 				+ ", password=" + password + "]";
 	}
 	
+
 }
