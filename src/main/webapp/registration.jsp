@@ -6,6 +6,61 @@
 <head>
 <script>
 function validation()
+var firstname=document.forms["register"]["firstname"].value;
+var lastname=document.forms["register"]["lastname"].value;
+var age=document.forms["register"]["age"].value;
+var gender=document.forms["register"]["gender"].value;
+var number=document.forms["register"]["contactnumber"].value;
+var city=document.forms["register"]["city"].value;
+var state=document.forms["register"]["state"].value;
+var userid=document.forms["register"]["userid"].value;
+var password=document.forms["register"]["password"].value;
+if(firstname=" "|| firstname==null)
+{
+alert("please update the highlighted mandatory fields");
+return false;
+}
+else if(lastname=" "|| lastname==null)
+{
+alert("please update the highlighted mandatory fields");
+return false;
+}
+else if(age=" "|| age==null)
+{
+alert("please update the highlighted mandatory fields");
+return false;
+}
+else if(gender=" "|| gender==null)
+{
+alert("please update the highlighted mandatory fields");
+return false;
+}
+else if(number=" "|| number==null)
+{
+alert("please update the highlighted mandatory fields");
+return false;
+}
+else if(city=" "|| city==null)
+{
+alert("please update the highlighted mandatory fields");
+return false;
+}
+else if(state=" "|| state==null)
+{
+alert("please update the highlighted mandatory fields");
+return false;
+}
+else if(userid=" "|| userid==null)
+{
+alert("please update the highlighted mandatory fields");
+return false;
+}
+else if(password=" "|| password==null)
+{
+alert("please update the highlighted mandatory fields");
+return false;
+}
+
 </script>
 <meta charset="ISO-8859-1">
 <title>Registration Page</title>
@@ -17,7 +72,7 @@ function validation()
 </div>
 <div align="center">
 <div class="forms-data">
-<form:form name="register" action="#" method="post" modelAttribute="#" style="margin-top:50px;margin-left:30px;" >
+<form:form name="register" action="#" method="post" modelAttribute="#" style="margin-top:50px;margin-left:30px;" onsubmit="return validation()" >
 <table>
 <tr>
 <td>First Name</td>
