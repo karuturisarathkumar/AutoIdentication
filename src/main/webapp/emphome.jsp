@@ -6,20 +6,20 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Bank Employee - Home Page</title>
-<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" type="text/css" href="/style.css">
 </head>
 <body>
 <%
-String username =(String) session.getAttribute("username");
-if(username==null)
+String user =(String) session.getAttribute("userid");
+if(user==null)
 {
-	response.sendRedirect("#");
+	response.sendRedirect("/emp/");
 }
 %>
 <div class="header1">
-<h1 style="text-align: center"> Welcome <span style="color:Navy;"> <%=username.toUpperCase() %></span></h1> 
+<h1 style="text-align: center"> Welcome <span style="color:Navy;"><%=user.toUpperCase() %></span></h1> 
 <ul>
-<li ><a href="#"></a></li>
+<li ><a href="#">Register customer</a></li>
 <li ><a href="#"></a></li>
 <li ><a href="#"></a></li>
 <li ><a href="#"></a></li>

@@ -6,14 +6,14 @@
 <head>
 <script>
 function validation()
-var firstname=document.forms["register"]["firstname"].value;
-var lastname=document.forms["register"]["lastname"].value;
+var firstname=document.forms["register"]["firstName"].value;
+var lastname=document.forms["register"]["lastName"].value;
 var age=document.forms["register"]["age"].value;
 var gender=document.forms["register"]["gender"].value;
-var number=document.forms["register"]["contactnumber"].value;
+var number=document.forms["register"]["contactNumber"].value;
 var city=document.forms["register"]["city"].value;
 var state=document.forms["register"]["state"].value;
-var userid=document.forms["register"]["userid"].value;
+var userid=document.forms["register"]["userId"].value;
 var password=document.forms["register"]["password"].value;
 if(firstname=" "|| firstname==null)
 {
@@ -64,7 +64,7 @@ return false;
 </script>
 <meta charset="ISO-8859-1">
 <title>Registration Page</title>
-<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" type="text/css" href="/style.css">
 </head>
 <body>
 <div class="header1">
@@ -72,23 +72,32 @@ return false;
 </div>
 <div align="center">
 <div class="forms-data">
-<form:form name="register" action="#" method="post" modelAttribute="#" style="margin-top:50px;margin-left:30px;" onsubmit="return validation()" >
+<form:form name="register" action="/emp/verifyregister" method="post" modelAttribute="bankemployee" onsubmit="validation()" style="margin-top:50px;margin-left:30px;" >
 <table>
+<tr>
+<td>User Id</td>
+<td>
+<form:input path="userId" class="form-control"/>
+<br>
+<form:errors path="userId" cssClass="errors"></form:errors>
+<br>
+</td>
+</tr>
 <tr>
 <td>First Name</td>
 <td>
-<form:input path="firstname" class="form-control"/>
+<form:input path="firstName" class="form-control"/>
 <br>
-<form:errors path="firstname" cssClass="errors"></form:errors>
+<form:errors path="firstName" cssClass="errors"></form:errors>
 <br>
 </td>
 </tr>
 <tr>
 <td>Last Name</td>
 <td>
-<form:input path="lastname" class="form-control"/>
+<form:input path="lastName" class="form-control"/>
 <br>
-<form:errors path="lastname" cssClass="errors"></form:errors>
+<form:errors path="lastName" cssClass="errors"></form:errors>
 <br>
 </td>
 </tr>
@@ -113,9 +122,9 @@ return false;
 <tr>
 <td>Contact Number</td>
 <td>
-<form:input path="contactnumber" class="form-control"/>
+<form:input path="contactNumber" class="form-control"/>
 <br>
-<form:errors path="contactnumber" cssClass="errors"></form:errors>
+<form:errors path="contactNumber" cssClass="errors"></form:errors>
 <br>
 </td>
 </tr>
@@ -137,15 +146,7 @@ return false;
 <br>
 </td>
 </tr>
-<tr>
-<td>User Id</td>
-<td>
-<form:input path="userid" class="form-control"/>
-<br>
-<form:errors path="userid" cssClass="errors"></form:errors>
-<br>
-</td>
-</tr>
+
 <tr>
 <td>Password</td>
 <td>
@@ -160,7 +161,7 @@ return false;
 </tr>
 </table>
 </form:form>
-Existing Bank Employee<a href="/login/" style="color:Navy;">Login</a>
+Existing Bank Employee<a href="/emp/" style="color:Navy;">Login</a>
 </div>
 <a href="/" style="color:Navy;">Home Page</a>
 </div>
