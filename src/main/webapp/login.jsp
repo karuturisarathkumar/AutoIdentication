@@ -6,23 +6,24 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Login Page</title>
-<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" type="text/css" href="/style.css">
 </head>
 <body>
 <body>
 <div class="header1">
 <h1>Bank Employee - Login</h1>
+${message }
 </div>
 <div align="center">
 <div class="forms-data">
-<form:form  action="#" method="post" modelAttribute="#" style="margin-top:50px;margin-left:30px;">
+<form:form  action="/emp/verifylogin" method="post" modelAttribute="bankemployeelogin" style="margin-top:50px;margin-left:30px;">
 <table>
 <tr>
 <td>User Id</td>
 <td>
-<form:input path="userid" class="form-control"/>
+<form:input path="userId" class="form-control"/>
 <br>
-<form:errors path="userid" cssClass="errors"></form:errors>
+<form:errors path="userId" cssClass="errors"></form:errors>
 <br>
 </td>
 </tr>
@@ -40,7 +41,7 @@
 </tr>
 </table>
 </form:form>
-New Bank Employee<a href="/registration" style="color:Navy;">Registration</a>
+New Bank Employee?<a href="/emp/register" style="color:Navy;">Registration</a>
 </div>
 <a href="/" style="color:Navy;">Home Page</a>
 </div>
