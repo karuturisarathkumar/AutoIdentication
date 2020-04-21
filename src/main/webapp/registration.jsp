@@ -19,7 +19,7 @@ var password=document.forms["register"]["password"].value;
 if(firstname==" "|| firstname==null)
 {
 alert("please update the highlighted mandatory fields");
-document.forms["register"]["firstName"].style.borderColor="red";
+document.getElementById('Fname').style.borderColor = "red";
 return false;
 }
 else if(lastname==" "|| lastname==null)
@@ -27,7 +27,7 @@ else if(lastname==" "|| lastname==null)
 alert("please update the highlighted mandatory fields");
 return false;
 }
-else if(age==0|| age==null)
+else if(age==0 || age==null)
 {
 alert("please update the highlighted mandatory fields");
 return false;
@@ -45,7 +45,7 @@ return false;
 else if(city==" "|| city==null)
 {
 alert("please update the highlighted mandatory fields");
-document.forms["register"]["city"].style.borderColor="red";
+document.getElementById('empcity').style.borderColor = "red";
 return false;
 }
 else if(state==" "|| state==null)
@@ -80,7 +80,7 @@ return false;
 <tr>
 <td>User Id <b style="color: red"> * </b> </td>
 <td>
-<form:input path="userId" class="form-control"/>
+<form:input path="userId" id="userId" class="form-control"/>
 <br>
 <form:errors path="userId" cssClass="errors"></form:errors>
 <br>
@@ -89,7 +89,7 @@ return false;
 <tr>
 <td>First Name  <b style="color: red"> * </b></td>
 <td>
-<form:input path="firstName" class="form-control"/>
+<form:input path="firstName" id="Fname" class="form-control"/>
 <br>
 <form:errors path="firstName" cssClass="errors"></form:errors>
 <br>
@@ -98,7 +98,7 @@ return false;
 <tr>
 <td>Last Name  <b style="color: red"> * </b></td>
 <td>
-<form:input path="lastName" class="form-control"/>
+<form:input path="lastName"  id="lastName" class="form-control"/>
 <br>
 <form:errors path="lastName" cssClass="errors"></form:errors>
 <br>
@@ -107,7 +107,7 @@ return false;
 <tr>
 <td>Age  <b style="color: red"> * </b></td>
 <td>
-<form:input path="age" class="form-control"/>
+<form:input path="age" id="age" class="form-control"/>
 <br>
 <form:errors path="age" cssClass="errors"></form:errors>
 <br>
@@ -116,16 +116,16 @@ return false;
 <tr>
 <td>Gender  <b style="color: red"> * </b></td>
 <td>
-<form:input path="gender" class="form-control"/>
+<form:input path="gender" id="gender" class="form-control"/>
 <br>
-<form:errors path="gender" cssClass="errors"></form:errors>
+<form:errors path="gender" id="" cssClass="errors"></form:errors>
 <br>
 </td>
 </tr>
 <tr>
 <td>Contact Number  <b style="color: red"> * </b> </td>
 <td>
-<form:input path="contactNumber" class="form-control"/>
+<form:input path="contactNumber" id="contactNumber" class="form-control"/>
 <br>
 <form:errors path="contactNumber" cssClass="errors"></form:errors>
 <br>
@@ -134,7 +134,7 @@ return false;
 <tr>
 <td>City  <b style="color: red"> * </b></td>
 <td>
-<form:input path="city" class="form-control"/>
+<form:input path="city" id="empcity" class="form-control"/>
 <br>
 <form:errors path="city" cssClass="errors"></form:errors>
 <br>
@@ -143,7 +143,7 @@ return false;
 <tr>
 <td>State  <b style="color: red"> * </b></td>
 <td>
-<form:input path="state" class="form-control"/>
+<form:input path="state" id="state"  class="form-control"/>
 <br>
 <form:errors path="state" cssClass="errors"></form:errors>
 <br>
@@ -153,7 +153,7 @@ return false;
 <tr>
 <td>Password  <b style="color: red"> * </b></td>
 <td>
-<form:password path="password" class="form-control"/>
+<form:password path="password" id="password" class="form-control"/>
 <br>
 <form:errors path="password" cssClass="errors"></form:errors>
 <br>

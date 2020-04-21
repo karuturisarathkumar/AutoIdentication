@@ -22,7 +22,7 @@ function Adminvalidation(){
  /* var paRegex = new RegExp("/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/");
  var usrRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])"); */
 
- if(firstname =="" && lastname==""&& age ==""&& mobile==""&& city==""&&state==""&&userid==""&&password==""){
+ if(firstname ==" " && lastname==" "&& age ==" "&& mobile==" "&& city==" "&&state==" "&&userid==" "&&password==" "){
 
 	 alert("Please update the highlighted mandatory field(s).");
 	 document.getElementById('Fname').style.borderColor = "red";
@@ -34,37 +34,37 @@ function Adminvalidation(){
 	 document.getElementById('userId').style.borderColor = "red";
 	 document.getElementById('password').style.borderColor = "red";	 
 	 }
- if(firstname==""){
+ if(firstname==" "){
 	 alert("Please update the highlighted mandatory field(s).");
 	 document.getElementById('Fname').style.borderColor = "red";
 	 }
- if(lastname ==""){
+ if(lastname ==" "){
 	 alert("Please update the highlighted mandatory field(s).");
 	 document.getElementById('Lname').style.borderColor = "red";
 	 }
- if(age ==""){
+ if(age ==" "){
 	 alert("Please update the highlighted mandatory field(s).");
 	 document.getElementById('age').style.borderColor = "red";
 	 
 	 }
- if(mobile==""){
+ if(mobile==" "){
 	 alert("Please update the highlighted mandatory field(s).");
 	 document.getElementById('contactNumber').style.borderColor = "red";
 	 }
- if(city==""){
+ if(city==" "){
 	 alert("Please update the highlighted mandatory field(s).");
 	 document.getElementById('city').style.borderColor = "red";
 	 }
- if(state==""){
+ if(state==" "){
 	 alert("Please update the highlighted mandatory field(s).");
 	 document.getElementById('state').style.borderColor = "red";
 	 }
- if(userid==""){
+ if(userid==" "){
 	 alert("Please update the highlighted mandatory field(s).");
 	 document.getElementById('userId').style.borderColor = "red";
 	 
 	 }
- if(password ==""){
+ if(password ==" "){
 	 alert("Please update the highlighted mandatory field(s).");
 	 document.getElementById('password').style.borderColor = "red";
 	 }

@@ -1,5 +1,7 @@
 package com.Auto_Identication.Auto.Identication.Controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,9 +11,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.Auto_Identication.Auto.Identication.Dao.EmployeeDao;
 import com.Auto_Identication.Auto.Identication.Models.Admin;
 import com.Auto_Identication.Auto.Identication.Models.AdminLogin;
+import com.Auto_Identication.Auto.Identication.Models.BankEmployee;
 import com.Auto_Identication.Auto.Identication.Services.AdminServices;
 
 @Controller
@@ -20,6 +25,8 @@ public class AdminController
 {
 	@Autowired
 	private AdminServices adminservices;
+	@Autowired
+	private EmployeeDao employeedao;
 	@GetMapping("/")
 public String aLogin(Model model)
 {
@@ -75,9 +82,42 @@ public String adminVerifyRegistration(@ModelAttribute("admin") Admin ad,Model mo
 	model.addAttribute("message", "something went wrong");
 	return "AdminLogin";
 }
-	
-	
-	
+@GetMapping("/getemplist")	
+public String getAllEmployees(Model model)
+{
+	List<BankEmployee> employeelist=adminservices.emplist();
+	model.addAttribute("employeelist", employeelist);
+	return "Adminhome";
+}
+	@GetMapping("/activate")
+public String employeeActivation(@RequestParam("userid") String user,Model model)
+{
+	BankEmployee bankemployee=employeedao.findByUserId(user);
+	bankemployee.setStatus("activate");
+	BankEmployee be=employeedao.save(bankemployee);
+	String status=be.getStatus();
+	if(be!=null && status.equals("activate"))
+	{
+		model.addAttribute("message", user +"sucesfully activate");
+	return "Adminhome";
+	}
+	else
+	{
+		model.addAttribute("message", user +"not activated");
+		return "Adminhome";
+	}
+}
+
+
+
+@GetMapping("/logout")
+public String logOut()
+{
+	return "home";
+}
+
+
+
 	
 	
 	

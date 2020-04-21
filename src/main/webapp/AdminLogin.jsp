@@ -6,7 +6,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Admin Login</title>
-<link rel="stylesheet" type="text/css" href="/AdminStyle.css">
+<link rel="stylesheet" type="text/css" href="/style.css">
 </head>
 <body>
 <div class="header1">

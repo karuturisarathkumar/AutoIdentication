@@ -57,9 +57,11 @@ private EmployeeDao employeedao;
 	}
 
 	@Override
-	public List<BankEmployee> emplist() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<BankEmployee> emplist() 
+	{
+		List<BankEmployee> belist=employeedao.findAll();
+		
+		return belist;
 	}
 
 }

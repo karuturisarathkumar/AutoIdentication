@@ -6,7 +6,7 @@
 <meta charset="ISO-8859-1">
 
 <title>Auto Identification System</title>
-<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" type="text/css" href="/style.css">
 </head>
 <body>
 <div align="center">
