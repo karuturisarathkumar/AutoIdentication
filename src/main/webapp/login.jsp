@@ -19,7 +19,7 @@ ${message }
 <form:form  action="/emp/verifylogin" method="post" modelAttribute="bankemployeelogin" style="margin-top:50px;margin-left:30px;">
 <table>
 <tr>
-<td>User Id</td>
+<td style="color: white">User Id</td>
 <td>
 <form:input path="userId" class="form-control"/>
 <br>
@@ -28,7 +28,7 @@ ${message }
 </td>
 </tr>
 <tr>
-<td>Password</td>
+<td style="color: white">Password</td>
 <td>
 <form:input path="password" class="form-control"/>
 <br>
@@ -41,9 +41,9 @@ ${message }
 </tr>
 </table>
 </form:form>
-New Bank Employee?<a href="/emp/register" style="color:Navy;">Registration</a>
+New Bank Employee?<a href="/emp/register" style="color:white;">Registration</a>
 </div>
-<a href="/" style="color:Navy;">Home Page</a>
+<a href="/" style="color:white;">Home Page</a>
 </div>
 </body>
 </html>

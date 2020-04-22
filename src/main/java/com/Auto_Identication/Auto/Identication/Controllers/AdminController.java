@@ -82,6 +82,12 @@ public String adminVerifyRegistration(@ModelAttribute("admin") Admin ad,Model mo
 	model.addAttribute("message", "something went wrong");
 	return "AdminLogin";
 }
+@GetMapping("/homeadmin")
+public String adminHome(Model model)
+{
+	model.addAttribute("message","* Please logout at the end of the day *");
+return "Adminhome";	
+}
 @GetMapping("/getemplist")	
 public String getAllEmployees(Model model)
 {

@@ -9,10 +9,11 @@
 <link rel="stylesheet" type="text/css" href="/style.css">
 </head>
 <body>
+
 <div align="center">
-<h1>Home Page</h1>
-<a href="/admin/">AIP Admin |</a>
-<a href="/emp/">Bank Employee</a>
+<h1 style="size: 20px">Home Page</h1>
+<a href="/admin/" style="color: black">AIP Admin |</a>
+<a href="/emp/" style="color: black">Bank Employee</a>
 </div>
 
 </head>

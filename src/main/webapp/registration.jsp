@@ -164,9 +164,9 @@ return false;
 </tr>
 </table>
 </form:form>
-Existing Bank Employee<a href="/emp/" style="color:Navy;">Login</a>
+Existing Bank Employee?<a href="/emp/" style="color:white;">Login</a>
 </div>
-<a href="/" style="color:Navy;">Home Page</a>
+<a href="/" style="color:black;">Home Page</a>
 </div>
 </body>
 </html>

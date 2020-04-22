@@ -1,14 +1,22 @@
 @charset "ISO-8859-1";
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
 
+*
+{
+	padding: 0;
+	marigin: 0;
+	box-sizing: border-box;
+}
 body
 {
-	margin: 0;
-	padding: 0;
-	background-color:slateGray ;
-	color: black;
-	font-family: 'Roboto Condensed', sans-serif;
+	background-image: url("background1.png");
+	background-size: cover;
+	 background-attachment: fixed;
+	 background-repeat: no-repeat; 
+	 background-position: center; 
+	font-family: 'Roboto Condensed', sans-serif; 
 }
+
 h1{
 	
 	font-size: 20px;
@@ -27,6 +35,7 @@ h1{
 {
 	width: 400px;
 	height: auto;
+	background-color:gray;
 	text-align: center;
 	border: 2px solid white;
 	border-radius: 15px;
@@ -62,24 +71,74 @@ ul{
 	text-align: right;
 	margin-right: 150px;
 }
-
-li {
-	
-	display: inline;
-	padding-right: 10px;
-}
-
-li a:hover{
-	color: yellow;
-	font-size: 22px;
-	
-}
-
-.errors
+.menubar
 {
-	color:yellow;
-	font-size: 22px;
+	text-align: center;
+	background-color: black;
+	width: 100%;
+	height: 150px;
 }
+.menubar ul
+{
+	display: inline-flex;
+	list-style: none;
+	color: black;
+}
+.menubar ul li
+{
+	width: 180px;
+	margin: 15px;
+	padding: 15px;
+}
+.menubar li a
+{
+	font-size: 20px;
+	text-align: center;
+}
+.active, .menubar ul li:hover
+{
+	background: gray;
+	border-radius: 3px;
+}
+.menubar .fa
+{
+	margin-right: 8px;
+}
+.sub-menu-1
+{
+	display: none;
+}
+.menubar ul li:hover .sub-menu-1
+{
+	display: block;
+	position: absolute;
+	background: gray;
+	margin-top: 15px;
+	margin-left: -15px;
+}
+.menubar ul li:hover .sub-menu-1 ul
+{
+	display: block;
+	margin: 10px;
+}
+.menubar ul li:hover .sub-menu-1 ul li
+{
+width: 100px;
+padding: 10px;
+border-bottom: 1px dotted white;
+background: transparent;
+border-radius: 0;
+text-align: left;	
+}
+.menubar ul li:hover .sub-menu-1 ul li:last-child
+{
+	border-bottom: none;
+}
+.menubar ul li:hover .sub-menu-1 ul li a:hover
+{
+	color: black;
+}
+
 
 tr
 {
