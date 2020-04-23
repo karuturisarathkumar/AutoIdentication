@@ -1,5 +1,6 @@
 package com.Auto_Identication.Auto.Identication.Controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -14,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.Auto_Identication.Auto.Identication.Dao.EmployeeDao;
+import com.Auto_Identication.Auto.Identication.Dao.LoanCustomerDao;
 import com.Auto_Identication.Auto.Identication.Models.Admin;
 import com.Auto_Identication.Auto.Identication.Models.AdminLogin;
 import com.Auto_Identication.Auto.Identication.Models.BankEmployee;
+import com.Auto_Identication.Auto.Identication.Models.LoanCustomer;
 import com.Auto_Identication.Auto.Identication.Services.AdminServices;
 
 @Controller
@@ -42,7 +45,6 @@ public String adminVerifyLogin(@ModelAttribute("adminlogin") AdminLogin al,Model
 		int res=adminservices.getAdmin(al);
 		if(res==1)
 		{
-			
 			return "Adminhome";
 		}
 		else if(res==2)
@@ -92,8 +94,16 @@ return "Adminhome";
 public String getAllEmployees(Model model)
 {
 	List<BankEmployee> employeelist=adminservices.emplist();
-	model.addAttribute("employeelist", employeelist);
-	return "Adminhome";
+	List<BankEmployee> bankemployeelist=new ArrayList<BankEmployee>();
+	for (BankEmployee be : employeelist)
+	{
+		if(be.getStatus().equals("deactivate"))
+		{
+			bankemployeelist.add(be);
+		}
+	}
+	model.addAttribute("employeelist", bankemployeelist);
+	return "Adminwork";
 }
 	@GetMapping("/activate")
 public String employeeActivation(@RequestParam("userid") String user,Model model)
@@ -113,8 +123,82 @@ public String employeeActivation(@RequestParam("userid") String user,Model model
 		return "Adminhome";
 	}
 }
+	@GetMapping("/autocustlist")
+public String autoDefaulters(Model model)
+{
+		List<LoanCustomer> custlist=adminservices.customerlist();
+		List<LoanCustomer> cl=new ArrayList<LoanCustomer>();
+		for (LoanCustomer customer : custlist) 
+		{
+			if(customer.getBorrowerRating()>=8 && (customer.getAccuralStatus()==2||customer.getAccuralStatus()==3||customer.getAccuralStatus()==4||customer.getAccuralStatus()==5))
+			{
+				cl.add(customer);
+			}
+		}
+		model.addAttribute("customerList", cl);
+return "Adminworkofcustomer";
+}
+@GetMapping("/manualcustlist")
+public String manualDefaulters(Model model)
+{
+	List<LoanCustomer> custlist=adminservices.customerlist();
+	List<LoanCustomer> cl=new ArrayList<LoanCustomer>();
+	for (LoanCustomer customer : custlist) 
+	{
+		int due=customer.getDues()*30;
+		if(due>=90 && (customer.getBorrowerRating()==5 ||customer.getBorrowerRating()==6 ||customer.getBorrowerRating()==7 || customer.getAccuralStatus()==1||customer.getAccuralStatus()==6||customer.getAccuralStatus()==7))
+		{
+			cl.add(customer);
+		}
+	}
+	model.addAttribute("customerList", cl);
+	return "Adminworkofcustomer";	
+}
+	
+@GetMapping("/list")
+public String getAllList(Model model)
+{
+	List<LoanCustomer> custlist=adminservices.customerlist();
+	model.addAttribute("customerList", custlist);
+return "Adminworkofcustomer";	
+}
+
+@GetMapping("/sixmonthlist")
+public String sixMonth(Model model)
+{
+	List<LoanCustomer> custlist=adminservices.customerlist();
+	List<LoanCustomer> cl=new ArrayList<LoanCustomer>();
+	for (LoanCustomer customer : custlist) 
+	{
+		if(customer.getDues()>=6)
+		{
+			cl.add(customer);
+		}
+	}
+	model.addAttribute("custList", cl);
+	return "Adminworkofcustomer";	
+}
 
 
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 @GetMapping("/logout")
 public String logOut()

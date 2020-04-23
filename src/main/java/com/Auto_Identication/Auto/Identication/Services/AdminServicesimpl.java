@@ -8,9 +8,11 @@ import org.springframework.stereotype.Service;
 
 import com.Auto_Identication.Auto.Identication.Dao.AdminDao;
 import com.Auto_Identication.Auto.Identication.Dao.EmployeeDao;
+import com.Auto_Identication.Auto.Identication.Dao.LoanCustomerDao;
 import com.Auto_Identication.Auto.Identication.Models.Admin;
 import com.Auto_Identication.Auto.Identication.Models.AdminLogin;
 import com.Auto_Identication.Auto.Identication.Models.BankEmployee;
+import com.Auto_Identication.Auto.Identication.Models.LoanCustomer;
 @Component
 @Service
 public class AdminServicesimpl implements AdminServices 
@@ -19,6 +21,8 @@ public class AdminServicesimpl implements AdminServices
 private AdminDao admindao;
 	@Autowired
 private EmployeeDao employeedao;
+	@Autowired
+	private LoanCustomerDao loandao;
 	@Override
 	public int storeAdmin(Admin admin) 
 	{
@@ -62,6 +66,13 @@ private EmployeeDao employeedao;
 		List<BankEmployee> belist=employeedao.findAll();
 		
 		return belist;
+	}
+
+	@Override
+	public List<LoanCustomer> customerlist() 
+	{
+		List<LoanCustomer> cl=loandao.findAll();
+		return cl;
 	}
 
 }
