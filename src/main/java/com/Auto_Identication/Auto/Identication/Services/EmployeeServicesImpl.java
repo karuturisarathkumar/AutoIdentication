@@ -7,14 +7,18 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.Auto_Identication.Auto.Identication.Dao.EmployeeDao;
+import com.Auto_Identication.Auto.Identication.Dao.LoanCustomerDao;
 import com.Auto_Identication.Auto.Identication.Models.BankEmployee;
 import com.Auto_Identication.Auto.Identication.Models.BankEmployeeLogin;
+import com.Auto_Identication.Auto.Identication.Models.LoanCustomer;
 @Service
 @Component
 public class EmployeeServicesImpl implements EmployeeServices 
 {
 	@Autowired
 private EmployeeDao employeedao;
+	@Autowired
+	private LoanCustomerDao loandao;
 	@Override
 	public int storeEmployee(BankEmployee bankemployee)
 	{
@@ -67,6 +71,15 @@ private EmployeeDao employeedao;
 			}
 		}
 		return 0;
+	}
+
+
+
+	@Override
+	public List<LoanCustomer> customerlist() 
+	{
+		List<LoanCustomer> lc=loandao.findAll();
+		return lc;
 	}
 
 }

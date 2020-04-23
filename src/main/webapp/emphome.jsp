@@ -21,7 +21,7 @@ if(user==null)
 <h1 style="text-align: center;color: white"> Welcome <span style="color:white;"><%=user.toUpperCase() %></span></h1> 
 <ul>
 <li class="active"><a href="#"><i class="fa fa-home"></i>Home</a></li>
-<li ><a href="#"><i class="fa fa-user-times"></i>Defaulters</a></li>
+<li ><a href="/emp/defaultlist"><i class="fa fa-user-times"></i>Defaulters</a></li>
 <li ><a href="#"><i class="fa fa-credit-card"></i>Re-activate cards</a></li>
 <li ><a href="/"><i class="fa fa-power-off"></i>Logout</a></li>
 <li ><a href="#"><i class="fa fa-phone"></i>contact us</a></li>

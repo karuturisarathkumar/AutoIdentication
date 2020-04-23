@@ -159,6 +159,24 @@ return false;
 <br>
 </td>
 </tr>
+<form:form action="#" method="post" modelAttribute="secure">
+<tr>
+<td>Questions <b style="color: red"> * </b></td>
+<td>
+<form:select path="question">
+<form:option value="1">what is your pet name?</form:option>
+<form:option value="2">what is your grandmother name?</form:option>
+<form:option value="3">what is your school name?</form:option>
+</form:select>
+</td>
+</tr>
+<tr>
+<td>Answer <b style="color: red"> * </b></td>
+<td>
+<form:input path="answer"/>
+</td>
+</tr>
+</form:form>
 <tr>
 <td colspan="2" align="center"><input type="submit" value="Register" class="formsubmitbutton" />
 </tr>

@@ -1,5 +1,8 @@
 package com.Auto_Identication.Auto.Identication.Controllers;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.Auto_Identication.Auto.Identication.Models.BankEmployee;
 import com.Auto_Identication.Auto.Identication.Models.BankEmployeeLogin;
+import com.Auto_Identication.Auto.Identication.Models.LoanCustomer;
+import com.Auto_Identication.Auto.Identication.Models.Security;
 import com.Auto_Identication.Auto.Identication.Services.EmployeeServices;
 
 @Controller
@@ -51,15 +56,20 @@ public String empLoginVerify(@ModelAttribute("bankemployeelogin") BankEmployeeLo
 	return "login";
 }
 	@GetMapping("/register")
-public String empRegister(Model model)
+public String empRegister(Model empmodel,Model secmodel)
 {
 		BankEmployee bankemployee=new BankEmployee();
-		model.addAttribute("bankemployee", bankemployee);
+		empmodel.addAttribute("bankemployee", bankemployee);
+		
+		Security secure=new Security();
+		secmodel.addAttribute("secure", secure);
 	return "registration";	
 }
 	@PostMapping("/verifyregister")
-public String verifyEmpRegister(@ModelAttribute("bankemployee") BankEmployee be,Model model)
+public String verifyEmpRegister(@ModelAttribute("bankemployee") BankEmployee be,@ModelAttribute("secure") Security sec,Model model)
 {
+		sec.setUserId(be.getUserId());;
+	be.setSecurity(sec);
 		be.setStatus("deactivate");
 	int res=employeeservices.storeEmployee(be);
 	BankEmployeeLogin bankemployeelogin=new BankEmployeeLogin();
@@ -80,8 +90,19 @@ public String verifyEmpRegister(@ModelAttribute("bankemployee") BankEmployee be,
 	return "login";
 	}
 }
-	
-	
+	@GetMapping("/defaultlist")
+	public String defaulterList(Model model)
+	{
+		List<LoanCustomer> cl=employeeservices.customerlist();
+		List<LoanCustomer> customers=new ArrayList<LoanCustomer>();
+		for (LoanCustomer loancustomer : cl)
+		{
+			
+			customers.add(loancustomer);
+		}
+		model.addAttribute("custlist",customers);
+		return "employeeworkforcustomer";
+	}
 	
 	
 	
