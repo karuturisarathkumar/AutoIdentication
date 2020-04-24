@@ -12,7 +12,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.Auto_Identication.Auto.Identication.Dao.EmployeeDao;
+import com.Auto_Identication.Auto.Identication.Dao.LoanCustomerDao;
+import com.Auto_Identication.Auto.Identication.Dao.SecurityDao;
 import com.Auto_Identication.Auto.Identication.Models.BankEmployee;
 import com.Auto_Identication.Auto.Identication.Models.BankEmployeeLogin;
 import com.Auto_Identication.Auto.Identication.Models.LoanCustomer;
@@ -25,6 +29,10 @@ public class EmployeeController
 {
 	@Autowired
 	private EmployeeServices employeeservices;
+	@Autowired
+	private SecurityDao securedao;
+	@Autowired
+	private LoanCustomerDao loandao;
 	@GetMapping("/")
 public String empLogin(Model model)
 {
@@ -104,10 +112,73 @@ public String verifyEmpRegister(@ModelAttribute("bankemployee") BankEmployee be,
 		return "employeeworkforcustomer";
 	}
 	
+	@GetMapping("/homeemp")
+	public String empHome(Model model)
+	{
+		model.addAttribute("message","* Please logout at the end of the day *");
+	    
+		return "emphome";
+	}
+	
+	@GetMapping("/details")
+	public String empDetails(@RequestParam("id") int res,Model cusmodel,Model model)
+	{
+		LoanCustomer lc=loandao.findByaccountNumber(res);
+		System.out.println(lc);
+		cusmodel.addAttribute("customer",lc);
+		model.addAttribute("card",lc.getCard());
+		return "customerdueverify";
+	}
+	
+	@GetMapping("/cards")
+	public String customerCards(Model model)
+	{
+		return "search";
+	}
+	@PostMapping("/getCard")
+	public String searchCustomer(@RequestParam("number") int res,Model model)
+	{
+		LoanCustomer lc=loandao.findByaccountNumber(res);
+		if(lc==null)
+		{
+			model.addAttribute("message", "There is no customer");
+			return "emphome";
+		}
+		model.addAttribute("card",lc.getCard());
+		return "search";
+	}
 	
 	
 	
 	
+	@GetMapping("/forgot")
+	public String forgotPassword(Model model)
+	{
+		Security secure=new Security();
+		model.addAttribute("passwordsecure",secure);
+		return "security";
+	}
+	
+	@PostMapping("/empforget")
+	public String verifyForgot(@ModelAttribute("passwordsecure") Security sec,Model  model)
+	{
+		System.out.println(sec);
+		System.out.println(sec.getUserId());
+		Security s=securedao.findByuserId(sec.getUserId());
+		BankEmployeeLogin bl=new BankEmployeeLogin();
+		model.addAttribute("bankemployeelogin", bl);
+		System.out.println(s);
+		if(s!=null)
+		{
+		if(s.getQuestion().equals(sec.getQuestion()))
+		{
+			return "newpassword";
+		}
+		}
+		model.addAttribute("message","you are not the user");
+		return "login";
+		
+	}
 	
 }
 

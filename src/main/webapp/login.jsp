@@ -33,6 +33,7 @@ ${message }
 <form:input path="password" class="form-control"/>
 <br>
 <form:errors path="password" cssClass="errors"></form:errors>
+<a href="/emp/forgot" style="font-size: 13px;">forgot password?</a>
 <br>
 </td>
 </tr>

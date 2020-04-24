@@ -27,6 +27,8 @@ private double borrowedAmount;
 	@Column
 private int tenure;
 	@Column
+	private int moneyPaid;
+	@Column
 	private String email;
 	@Column
 	private String mobile;

@@ -20,13 +20,15 @@ if(user==null)
 <div class="menubar">
 <h1 style="text-align: center;color: white"> Welcome <span style="color:white;"><%=user.toUpperCase() %></span></h1> 
 <ul>
-<li class="active"><a href="#"><i class="fa fa-home"></i>Home</a></li>
+<li class="active"><a href="/emp/homeemp"><i class="fa fa-home"></i>Home</a></li>
 <li ><a href="/emp/defaultlist"><i class="fa fa-user-times"></i>Defaulters</a></li>
-<li ><a href="#"><i class="fa fa-credit-card"></i>Re-activate cards</a></li>
+<li ><a href="/emp/cards"><i class="fa fa-credit-card"></i>Re-activate cards</a></li>
 <li ><a href="/"><i class="fa fa-power-off"></i>Logout</a></li>
 <li ><a href="#"><i class="fa fa-phone"></i>contact us</a></li>
 </ul>
 </div>
-
+<div style="position:fixed; right:0; left:0; bottom: 5px;">
+<h1 style="color: red;font-size: 30px;"><marquee>${message}</marquee></h1>
+</div>
 </body>
 </html>
