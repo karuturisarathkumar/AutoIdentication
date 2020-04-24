@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1" isELIgnored="false"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
@@ -14,26 +14,25 @@
 String user =(String) session.getAttribute("userid");
 if(user==null)
 {
-	response.sendRedirect("/emp/");
+	response.sendRedirect("/admin/");
 }
 %>
 <div class="menubar">
-<h1 style="text-align: center;color: white"> Welcome <span style="color:white;"><%=user.toUpperCase() %></span></h1> 
+<h1 style="text-align: center;color: white;"> Welcome <span style="color:white;"><%=user.toUpperCase() %></span></h1> 
 <ul>
-<li class="active"><a href="#"><i class="fa fa-home"></i>Home</a></li>
-<li ><a href="/emp/defaultlist"><i class="fa fa-user-times"></i>Defaulters</a></li>
-<li ><a href="#"><i class="fa fa-user-times"></i>Due List</a>
+<li class="active"><a href="/admin/homeadmin"><i class="fa fa-home"></i>Home</a></li>
+<li ><a href="#"><i class="fa fa-user-times"></i>Defaulter</a>
 <div class="sub-menu-1">
 <ul>
-<li><a href="/emp/duelessthree">Less than Three Months</a></li>
-<li><a href="/emp/duelesssix">Less than Six Months</a></li>
-<li><a href="/emp/duelesstwelve">Less than Twelve Months</a></li>
-<li><a href="/emp/duegreatertwelve">Greater than Twelve Months</a></li>
-<li><a href="/emp/defaultlist">All Customers</a></li>
+<li><a href="/admin/autocustlist">AutoDefaulters</a></li>
+<li><a href="/admin/manualcustlist">ManualDefaulters</a></li>
+<li><a href="/admin/list">Customers</a></li>
+<li><a href="/admin/sixmonthlist">six months</a></li>
 </ul>
 </div>
 </li>
-<li ><a href="#"><i class="fa fa-credit-card"></i>Re-activate cards</a></li>
+<li ><a href="/admin/getemplist"><i class="fa fa-user"></i>NewEmployee</a></li>
+<li ><a href="#"><i class="fa fa-universal-access"></i>Reactivation</a></li>
 <li ><a href="/"><i class="fa fa-power-off"></i>Logout</a></li>
 <li ><a href="#"><i class="fa fa-phone"></i>contact us</a>
 <div class="sub-menu-1">
@@ -45,6 +44,23 @@ if(user==null)
 </li>
 </ul>
 </div>
-
+<div style="position:fixed; right:0; left:0; bottom: 5px;">
+<h1 style="color: red;font-size: 30px;"><marquee>${message}</marquee></h1>
+</div>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -85,7 +85,7 @@ public String adminVerifyRegistration(@ModelAttribute("admin") Admin ad,Model mo
 	return "AdminLogin";
 }
 @GetMapping("/homeadmin")
-public String adminHome(Model model)
+public String adminHome(Model model)  
 {
 	model.addAttribute("message","* Please logout at the end of the day *");
 return "Adminhome";	

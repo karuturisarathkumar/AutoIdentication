@@ -22,27 +22,9 @@ if(user==null)
 <ul>
 <li class="active"><a href="#"><i class="fa fa-home"></i>Home</a></li>
 <li ><a href="/emp/defaultlist"><i class="fa fa-user-times"></i>Defaulters</a></li>
-<li ><a href="#"><i class="fa fa-user-times"></i>Due List</a>
-<div class="sub-menu-1">
-<ul>
-<li><a href="/emp/duelessthree">Less than Three Months</a></li>
-<li><a href="/emp/duelesssix">Less than Six Months</a></li>
-<li><a href="/emp/duelesstwelve">Less than Twelve Months</a></li>
-<li><a href="/emp/duegreatertwelve">Greater than Twelve Months</a></li>
-<li><a href="/emp/defaultlist">All Customers</a></li>
-</ul>
-</div>
-</li>
 <li ><a href="#"><i class="fa fa-credit-card"></i>Re-activate cards</a></li>
 <li ><a href="/"><i class="fa fa-power-off"></i>Logout</a></li>
-<li ><a href="#"><i class="fa fa-phone"></i>contact us</a>
-<div class="sub-menu-1">
-<ul>
-<li style="width: 250px;"><a href="#">phone:+(91)-8688292729</a></li>
-<li><a href="#">Mail id:-karuturisarathkumar@gmail.com</a></li>
-</ul>
-</div>
-</li>
+<li ><a href="#"><i class="fa fa-phone"></i>contact us</a></li>
 </ul>
 </div>
 

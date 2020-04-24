@@ -13,13 +13,39 @@
 <table border="2">
 <c:forEach items="${custlist}" var="customer">
 <tr>
-     <td><a href="#"  style="color: yellow;">${customer.customerName}</a></td>
-     </tr>
+     <td><a href="/emp/duelist"  style="color: yellow;">${customer.customerName}-->Dues:${customer.dues}</a></td>
+    </tr>
 </c:forEach>
-
 </table>
 </div>
-
+${message}
+<div align="center">
+<table border="2">
+<c:forEach items="${duelessthan3}" var="due">
+<tr>
+     <td><a   style="color: yellow;">${due.customerName}</a></td>
+     </tr>
+</c:forEach>
+</table>
+</div>
+<div align="center">
+<table border="2">
+<c:forEach items="${duelessthan12}" var="d">
+<tr>
+     <td><a style="color: yellow;">${d.customerName}</a></td>
+     </tr>
+</c:forEach>
+</table>
+</div>
+<div align="center">
+<table border="2">
+<c:forEach items="${duelessthan6}" var="du">
+<tr>
+     <td><a style="color: yellow;">${du.customerName}</a></td>
+     </tr>
+</c:forEach>
+</table>
+</div>
 <%
 
 RequestDispatcher rd = request.getRequestDispatcher("emphome.jsp");
