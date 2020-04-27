@@ -11,6 +11,7 @@ import com.Auto_Identication.Auto.Identication.Dao.LoanCustomerDao;
 import com.Auto_Identication.Auto.Identication.Models.BankEmployee;
 import com.Auto_Identication.Auto.Identication.Models.BankEmployeeLogin;
 import com.Auto_Identication.Auto.Identication.Models.LoanCustomer;
+import com.Auto_Identication.Auto.Identication.Models.Security;
 @Service
 @Component
 public class EmployeeServicesImpl implements EmployeeServices 
@@ -18,7 +19,8 @@ public class EmployeeServicesImpl implements EmployeeServices
 	@Autowired
 private EmployeeDao employeedao;
 	@Autowired
-	private LoanCustomerDao loandao;
+	private LoanCustomerDao loandao;	
+	
 	@Override
 	public int storeEmployee(BankEmployee bankemployee)
 	{
@@ -81,5 +83,45 @@ private EmployeeDao employeedao;
 		List<LoanCustomer> lc=loandao.findAll();
 		return lc;
 	}
+	@Override
+	public Security getSecurity(String contactNumber) {
+		// TODO Auto-generated method stub
+		return employeedao.getSecurityCredentials(contactNumber);
+	}
 
+
+
+	@Override
+	public Security getSecuritypwd(String userId) {
+		
+		return employeedao.getSecuritypassword(userId);
+	}
+
+
+
+	@Override
+	public boolean updatePassword(BankEmployee bankEmployee) {
+		
+		BankEmployee be = employeedao.save(bankEmployee);
+		
+		if(be!=null) {
+			
+			return true;
+		}
+		else {
+			return false;
+		}
+		
+		
+	}
+
+
+
+	@Override
+	public BankEmployee getuserdata(String userId) {
+		
+		return employeedao.getEmployee(userId);
+	}
+	
+	
 }

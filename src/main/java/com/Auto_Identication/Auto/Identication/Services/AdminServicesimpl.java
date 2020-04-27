@@ -13,6 +13,7 @@ import com.Auto_Identication.Auto.Identication.Models.Admin;
 import com.Auto_Identication.Auto.Identication.Models.AdminLogin;
 import com.Auto_Identication.Auto.Identication.Models.BankEmployee;
 import com.Auto_Identication.Auto.Identication.Models.LoanCustomer;
+import com.Auto_Identication.Auto.Identication.Models.Security;
 @Component
 @Service
 public class AdminServicesimpl implements AdminServices 
@@ -73,6 +74,36 @@ private EmployeeDao employeedao;
 	{
 		List<LoanCustomer> cl=loandao.findAll();
 		return cl;
+	}
+
+	@Override
+	public Security getSecurity(String contactNumber) {
+		return admindao.getSecurityCredentials(contactNumber);
+	}
+
+	@Override
+	public Security getSecuritypwd(String userId) {
+		return admindao.getSecuritypassword(userId);
+	}
+
+	@Override
+	public boolean updatePassword(Admin admin) {
+		
+		Admin ad = admindao.save(admin);
+		
+		if(ad!=null) {
+			
+			return true;
+		}
+		else {
+			return false;
+		}
+	
+	}
+
+	@Override
+	public Admin getuserdata(String userId) {
+		return admindao.getAdmin(userId);
 	}
 
 }

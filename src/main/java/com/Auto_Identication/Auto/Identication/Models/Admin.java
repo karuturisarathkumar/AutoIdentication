@@ -2,9 +2,13 @@ package com.Auto_Identication.Auto.Identication.Models;
 
 
 import javax.annotation.Generated;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 @Entity
 @Table
@@ -29,6 +33,25 @@ private String city;
 private String state;
 	@Column
 private String password;
+	@Column
+private String confirmationpassword;
+	@OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+	@JoinColumn(name="s_no",referencedColumnName ="id")
+	private Security security;
+	
+	
+	public Security getSecurity() {
+		return security;
+	}
+	public void setSecurity(Security security) {
+		this.security = security;
+	}
+	public String getConfirmationpassword() {
+		return confirmationpassword;
+	}
+	public void setConfirmationpassword(String confirmationpassword) {
+		this.confirmationpassword = confirmationpassword;
+	}
 	public String getUserId() {
 		return userId;
 	}
@@ -87,8 +110,8 @@ private String password;
 	public String toString() {
 		return "Admin [userId=" + userId + ", firstName=" + firstName + ", lastName=" + lastName + ", age=" + age
 				+ ", gender=" + gender + ", contactNumber=" + contactNumber + ", city=" + city + ", state=" + state
-				+ ", password=" + password + "]";
-	}
-	
+				+ ", password=" + password + ", confirmationpassword=" + confirmationpassword + ", security=" + security
+				+ "]";
+	}	
 
 }
