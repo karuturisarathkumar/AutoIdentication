@@ -96,9 +96,11 @@ ul{
 }
 .active, .menubar ul li:hover
 {
+	text-align:center;
 	background: gray;
 	border-radius: 3px;
 }
+
 .menubar .fa
 {
 	margin-right: 8px;
@@ -143,8 +145,8 @@ tr
 {
 	border: 1px solid yellow;
 }
-.fotter
+td,th
 {
 	
-	
+	color: white;
 }

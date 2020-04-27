@@ -11,4 +11,5 @@ public interface LoanCustomerDao extends JpaRepository<LoanCustomer, Integer>
 {
 public LoanCustomer findByaccountNumber(int accno);
 public List<LoanCustomer> findAll();
+
 }

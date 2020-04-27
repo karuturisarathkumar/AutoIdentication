@@ -32,7 +32,21 @@ if(user==null)
 </div>
 </li>
 <li ><a href="/admin/getemplist"><i class="fa fa-user"></i>NewEmployee</a></li>
-<li ><a href="#"><i class="fa fa-universal-access"></i>Reactivation</a></li>
+<li ><a href="/admin/ativates"><i class="fa fa-universal-access"></i>Reactivation</a></li>
+<li ><a href="#"><i class="fa fa-flag"></i>Report</a>
+<div class="sub-menu-1">
+<ul>
+<li><a href="/admin/genRep">Over all report</a></li>
+<li><a href="/admin/autodef">no.of AutoDefaulter</a></li>
+<li><a href="#">no.of ManualDefaulter</a></li>
+<li><a href="#">no.of Autowavers</a></li>
+<li><a href="#">no.of validators</a></li>
+
+
+</ul>
+</div>
+</li>
+
 <li ><a href="/"><i class="fa fa-power-off"></i>Logout</a></li>
 <li ><a href="#"><i class="fa fa-phone"></i>contact us</a>
 <div class="sub-menu-1">
@@ -44,6 +58,8 @@ if(user==null)
 </li>
 </ul>
 </div>
+
+
 <div style="position:fixed; right:0; left:0; bottom: 5px;">
 <h1 style="color: red;font-size: 30px;"><marquee>${message}</marquee></h1>
 </div>

@@ -9,7 +9,7 @@
 </head>
 <body>
 <div align="center">
-<table border="2"  style="background-color: yellow;">
+<table border="2"  style="background-color: black;">
  <tr>
 <th>AccountNumber</th>
 <th>Name</th>
@@ -19,6 +19,8 @@
 <th>mobile</th>
 <th>Last paid date</th>
 <th>dues</th>
+<th>money paid</th>
+<th>fine</th>
 <th>accuralStatus</th>
 <th>borrower rating</th>
 <th>status</th>
@@ -34,6 +36,8 @@
            <td>${customer.mobile}</td>
            <td>${customer.lastPaid}</td>
            <td>${customer.dues}</td>
+           <td>${customer.moneyPaid}</td>
+           <td>${customer.fine}</td>
            <td>${customer.accuralStatus}</td>
            <td>${customer.borrowerRating}</td>
            <td>${customer.status}<button><a href="#" style="color: red;">Validate</a></button><button><a href="#" style="color: red;">AutoWaver</a></button></td>

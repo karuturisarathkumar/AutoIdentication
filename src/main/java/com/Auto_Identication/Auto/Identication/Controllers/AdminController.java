@@ -19,6 +19,7 @@ import com.Auto_Identication.Auto.Identication.Dao.LoanCustomerDao;
 import com.Auto_Identication.Auto.Identication.Models.Admin;
 import com.Auto_Identication.Auto.Identication.Models.AdminLogin;
 import com.Auto_Identication.Auto.Identication.Models.BankEmployee;
+import com.Auto_Identication.Auto.Identication.Models.Card;
 import com.Auto_Identication.Auto.Identication.Models.LoanCustomer;
 import com.Auto_Identication.Auto.Identication.Services.AdminServices;
 
@@ -30,6 +31,8 @@ public class AdminController
 	private AdminServices adminservices;
 	@Autowired
 	private EmployeeDao employeedao;
+	@Autowired
+	private LoanCustomerDao loandao;
 	@GetMapping("/")
 public String aLogin(Model model)
 {
@@ -85,7 +88,7 @@ public String adminVerifyRegistration(@ModelAttribute("admin") Admin ad,Model mo
 	return "AdminLogin";
 }
 @GetMapping("/homeadmin")
-public String adminHome(Model model)
+public String adminHome(Model model)  
 {
 	model.addAttribute("message","* Please logout at the end of the day *");
 return "Adminhome";	
@@ -179,12 +182,115 @@ public String sixMonth(Model model)
 	return "Adminworkofcustomer";	
 }
 
+@GetMapping("/ativates")
+public String activateCards(Model model)
+{
+	List<LoanCustomer> custlist=adminservices.customerlist();
+	List<Card> cl=new ArrayList<Card>();
+	for (LoanCustomer loancustomer : custlist)
+	{
+		
+		if(loancustomer.getCard().getCardStatus().equals("Re-active"))
+		{
+			cl.add(loancustomer.getCard());
+			
+		}
+	}
+	System.out.println(cl);
+	model.addAttribute("card", cl);
+	return "reactivates";
+}
 
+@GetMapping("/verifycard")
+public String verifyActivationCards(@RequestParam("id") int res,Model model)
+{
+LoanCustomer lc=loandao.findByaccountNumber(res);
+if(lc.getCard()!=null)
+{
+lc.getCard().setCardStatus("active");
+LoanCustomer loan=loandao.save(lc);
+if(loan!=null)
+{
+model.addAttribute("message",lc.getCustomerName()+"card activated successfully");
+return "Adminhome";
+}
+else
+{
+	model.addAttribute("message",lc.getCustomerName()+"card not activated");
+	return "Adminhome";	
+}
+}
+model.addAttribute("message",lc.getCustomerName()+"card doesnot exits");
+return "Adminhome";	
+}
+@GetMapping("/decCard")
+public String deactivateCard(@RequestParam("id") int res,Model model)
+{
+	LoanCustomer lc=loandao.findByaccountNumber(res);
+	if(lc.getCard()!=null)
+	{
+	lc.getCard().setCardStatus("deactive");
+	LoanCustomer loan=loandao.save(lc);
+	if(loan!=null)
+	{
+	model.addAttribute("message",lc.getCustomerName()+"card deactivated successfully");
+	return "Adminhome";
+	}
+	else
+	{
+		model.addAttribute("message",lc.getCustomerName()+"card not deactivated");
+		return "Adminhome";	
+	}
+	}
+	model.addAttribute("message",lc.getCustomerName()+"card doesnot exits");
+	return "Adminhome";	
+}
 
+@GetMapping("/genRep")
+public String customerReport(Model model)
+{
+	int autocount=0;
+	int manualcount=0;
+	int count=0;
+	int validcount=0;
+	List<LoanCustomer> custlist=adminservices.customerlist();
+	for (LoanCustomer customer : custlist) 
+	{
+		int due=customer.getDues()*30;
+		if(customer.getStatus().equals("defaulter"))
+		{
+			count++;
+			if(customer.getBorrowerRating()>=8 && (customer.getAccuralStatus()==2||customer.getAccuralStatus()==3||customer.getAccuralStatus()==4||customer.getAccuralStatus()==5))
+			{
+				autocount++;
 
-
-
-
+			}
+			
+			else if(due>=90 && (customer.getBorrowerRating()==5 ||customer.getBorrowerRating()==6 ||customer.getBorrowerRating()==7 || customer.getAccuralStatus()==1||customer.getAccuralStatus()==6||customer.getAccuralStatus()==7))
+			{
+				manualcount++;
+			}
+		}
+		else if(customer.getCard().getCardStatus().equals("Re-active"))
+		{
+			validcount++;
+		}
+		
+	}
+	model.addAttribute("auto", autocount);
+	model.addAttribute("manual", manualcount);
+	System.out.println(count);
+	model.addAttribute("calul", count);
+	model.addAttribute("req", validcount);
+return "report";
+}
+@GetMapping("/autodef")
+public String reportAuto(Model model)
+{
+	List<LoanCustomer> custlist=adminservices.customerlist();
+	model.addAttribute("customerList", custlist);
+	return "sort";
+}
 
 
 

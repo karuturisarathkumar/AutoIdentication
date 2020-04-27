@@ -22,9 +22,30 @@ if(user==null)
 <ul>
 <li class="active"><a href="/emp/homeemp"><i class="fa fa-home"></i>Home</a></li>
 <li ><a href="/emp/defaultlist"><i class="fa fa-user-times"></i>Defaulters</a></li>
+
 <li ><a href="/emp/cards"><i class="fa fa-credit-card"></i>Re-activate cards</a></li>
+
+<li ><a href="#"><i class="fa fa-user-times"></i>Due List</a>
+<div class="sub-menu-1">
+<ul>
+<li><a href="/emp/duelessthree">Less than Three Months</a></li>
+<li><a href="/emp/duelesssix">Between 3 to 6</a></li>
+<li><a href="/emp/duelesstwelve">Between 6 to 12</a></li>
+<li><a href="/emp/duegreatertwelve">Greater than 12 Months</a></li>
+<li><a href="#">All Customers</a></li>
+</ul>
+</div>
+</li>
+
 <li ><a href="/"><i class="fa fa-power-off"></i>Logout</a></li>
-<li ><a href="#"><i class="fa fa-phone"></i>contact us</a></li>
+<li ><a href="#"><i class="fa fa-phone"></i>contact us</a>
+<div class="sub-menu-1">
+<ul>
+<li style="width: 250px;"><a href="#">phone:+(91)-8688292729</a></li>
+<li><a href="#">Mail id:-karuturisarathkumar@gmail.com</a></li>
+</ul>
+</div>
+</li>
 </ul>
 </div>
 <div style="position:fixed; right:0; left:0; bottom: 5px;">

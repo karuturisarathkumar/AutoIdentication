@@ -16,23 +16,23 @@
 </div>
 
 <div align="center" style="padding-top: 100px; ">
-<table border="2" style="background-color: red">
-<form>
+<table border="2" style="background-color: black">
+<form action="/emp/reactive">
 <tr>
   <td>card number</td> 
-  <td style="background-color: blue;"><c:out value="${card.cardNumber}"></c:out></td> 
+  <td><c:out value="${card.cardNumber}"></c:out></td> 
  </tr>
  <tr>
   <td>account number</td> 
-  <td style="background-color: blue;"><c:out value="${card.accountNumber}"></c:out></td> 
+  <td ><c:out value="${card.accountNumber}"></c:out></td> 
  </tr>
   <tr>
   <td>name</td> 
-  <td style="background-color: blue;"><c:out value="${card.customerName}"></c:out></td> 
+  <td><c:out value="${card.customerName}"></c:out></td> 
  </tr>
   <tr>
   <td>Date</td> 
-  <td style="background-color: blue;"><c:out value="${card.expDate}"></c:out></td> 
+  <td><c:out value="${card.expDate}"></c:out></td> 
  </tr>
  
   <tr>
@@ -41,10 +41,7 @@
  </tr>
   <tr>
   <td>card status</td>  
-  <td style="background-color: blue;"><c:out value="${card.cardStatus}"></c:out></td> 
- </tr>
- <tr style="padding-right: 50px;">
-   <td></td>
+  <td><c:out value="${card.cardStatus}"></c:out></td> 
  </tr>
 </table>
 
@@ -57,5 +54,6 @@ RequestDispatcher rd = request.getRequestDispatcher("emphome.jsp");
 rd.include(request, response);
 
 %>
+
 </body>
 </html>

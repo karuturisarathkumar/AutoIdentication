@@ -10,20 +10,21 @@
 
 <body>
 <div align="center">
-<table border="2" style="background-color: red">
+<table border="2" style="background-color: black">
 <c:forEach items="${custlist}" var="customer">
 <tr>
-     <td><a href="/emp/details?id=${customer.accountNumber}"  style="color: yellow;">${customer.customerName}</a></td>
-     </tr>
-</c:forEach>
+     <td><a href="/emp/details?id=${customer.accountNumber}"  style="color: white;">${customer.accountNumber}</a></td>
 
+     <%-- <td><a href="/emp/duelist"  style="color: yellow;">${customer.customerName}-->Dues:${customer.dues}</a></td> --%>
+    </tr>
+</c:forEach>
 </table>
 </div>
-<%
 
+
+<%
 RequestDispatcher rd = request.getRequestDispatcher("emphome.jsp");
 rd.include(request, response);
-
 %>
 </body>
 </html>

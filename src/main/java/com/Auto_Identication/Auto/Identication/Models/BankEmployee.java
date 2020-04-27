@@ -38,9 +38,6 @@ private String state;
 private String password;
 	@Column
 private String status;
-	@OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-	@JoinColumn(name="s_no",referencedColumnName ="id")
-	private Security security;
 	public String getUserId() {
 		return userId;
 	}
@@ -101,17 +98,12 @@ private String status;
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public Security getSecurity() {
-		return security;
-	}
-	public void setSecurity(Security security) {
-		this.security = security;
-	}
+	
 	@Override
 	public String toString() {
 		return "BankEmployee [userId=" + userId + ", firstName=" + firstName + ", lastName=" + lastName + ", age=" + age
 				+ ", gender=" + gender + ", contactNumber=" + contactNumber + ", city=" + city + ", state=" + state
-				+ ", password=" + password + ", status=" + status + ", security=" + security + "]";
+				+ ", password=" + password + ", status=" + status +  "]";
 	}
 	
 

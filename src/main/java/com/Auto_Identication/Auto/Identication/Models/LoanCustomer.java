@@ -29,6 +29,8 @@ private int tenure;
 	@Column
 	private int moneyPaid;
 	@Column
+	private double fine;
+	@Column
 	private String email;
 	@Column
 	private String mobile;
@@ -69,23 +71,17 @@ private Card card;
 	public void setTenure(int tenure) {
 		this.tenure = tenure;
 	}
-	public Date getLastPaid() {
-		return lastPaid;
+	public int getMoneyPaid() {
+		return moneyPaid;
 	}
-	public void setLastPaid(Date lastPaid) {
-		this.lastPaid = lastPaid;
+	public void setMoneyPaid(int moneyPaid) {
+		this.moneyPaid = moneyPaid;
 	}
-	public int getDues() {
-		return dues;
+	public double getFine() {
+		return fine;
 	}
-	public void setDues(int dues) {
-		this.dues = dues;
-	}
-	public Card getCard() {
-		return card;
-	}
-	public void setCard(Card card) {
-		this.card = card;
+	public void setFine(double fine) {
+		this.fine = fine;
 	}
 	public String getEmail() {
 		return email;
@@ -98,6 +94,18 @@ private Card card;
 	}
 	public void setMobile(String mobile) {
 		this.mobile = mobile;
+	}
+	public Date getLastPaid() {
+		return lastPaid;
+	}
+	public void setLastPaid(Date lastPaid) {
+		this.lastPaid = lastPaid;
+	}
+	public int getDues() {
+		return dues;
+	}
+	public void setDues(int dues) {
+		this.dues = dues;
 	}
 	public int getAccuralStatus() {
 		return accuralStatus;
@@ -117,13 +125,20 @@ private Card card;
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	public Card getCard() {
+		return card;
+	}
+	public void setCard(Card card) {
+		this.card = card;
+	}
 	@Override
 	public String toString() {
 		return "LoanCustomer [accountNumber=" + accountNumber + ", customerName=" + customerName + ", borrowedAmount="
-				+ borrowedAmount + ", tenure=" + tenure + ", email=" + email + ", mobile=" + mobile + ", lastPaid="
-				+ lastPaid + ", dues=" + dues + ", accuralStatus=" + accuralStatus + ", borrowerRating="
-				+ borrowerRating + ", status=" + status + ", card=" + card + "]";
+				+ borrowedAmount + ", tenure=" + tenure + ", moneyPaid=" + moneyPaid + ", fine=" + fine + ", email="
+				+ email + ", mobile=" + mobile + ", lastPaid=" + lastPaid + ", dues=" + dues + ", accuralStatus="
+				+ accuralStatus + ", borrowerRating=" + borrowerRating + ", status=" + status + ", card=" + card + "]";
 	}
+	
 	
 
 
