@@ -37,10 +37,19 @@ private String state;
 	@Column
 private String password;
 	@Column
+private String confirmationpassword;	
+	@Column
 private String status;
 	@OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	@JoinColumn(name="s_no",referencedColumnName ="id")
 	private Security security;
+	
+	public String getConfirmationpassword() {
+		return confirmationpassword;
+	}
+	public void setConfirmationpassword(String confirmationpassword) {
+		this.confirmationpassword = confirmationpassword;
+	}
 	public String getUserId() {
 		return userId;
 	}
@@ -111,8 +120,8 @@ private String status;
 	public String toString() {
 		return "BankEmployee [userId=" + userId + ", firstName=" + firstName + ", lastName=" + lastName + ", age=" + age
 				+ ", gender=" + gender + ", contactNumber=" + contactNumber + ", city=" + city + ", state=" + state
-				+ ", password=" + password + ", status=" + status + ", security=" + security + "]";
-	}
-	
+				+ ", password=" + password + ", confirmationpassword=" + confirmationpassword + ", status=" + status
+				+ ", security=" + security + "]";
+	}	
 
 }

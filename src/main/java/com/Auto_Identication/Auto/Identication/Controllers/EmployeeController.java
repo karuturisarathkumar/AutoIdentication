@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.Auto_Identication.Auto.Identication.Models.BankEmployee;
 import com.Auto_Identication.Auto.Identication.Models.BankEmployeeLogin;
@@ -104,10 +106,107 @@ public String verifyEmpRegister(@ModelAttribute("bankemployee") BankEmployee be,
 		return "employeeworkforcustomer";
 	}
 	
+	@GetMapping("/forgetUserId")
+	public String forgetId(Model model) {
+		 return "ForgotUserid";
+	}
 	
+	@PostMapping("/getUserId")
+	public String getUserid(@RequestParam("contactNumber") String contactNumber,
+			@RequestParam("question") String question,
+			@RequestParam("answer") String answer,
+			Model model) {
+		
+		System.out.println(question +" "+answer);
+		 Security sc = employeeservices.getSecurity(contactNumber);
+		 System.out.println(sc);
+		 if(sc==null)
+		 {
+			 model.addAttribute("message", "Your contact number is not not registered with us ");
+			 return "ForgotUserid";
+		 }
+		 
+		if(question.equals(sc.getQuestion()) && answer.equals(sc.getAnswer()))
+		 {
+			 model.addAttribute("message", "Your User Id is :<b>"+sc.getUserId());
+			 return "ForgotUserid";	 
+		 }
+		 else
+		 {
+			 model.addAttribute("message", "Invalid secret question credentials ");
+			 return "ForgotUserid";	
+			
+		 }
+		  
+		
+	}	
+	@GetMapping("/forgetpassword")
+	public String forgetPwd(Model model) {
+		
+		return "Forgotpassword";
+	}
+	@PostMapping("/getpwd")
+	public String getPassword(@RequestParam("userId") String userid,
+			@RequestParam("question") String que,
+			@RequestParam("answer") String ans,
+			   Model model,HttpSession session) {
+		Security sc = employeeservices.getSecuritypwd(userid);
+		System.out.println(sc);
+		 if(sc==null)
+		 {
+			 model.addAttribute("message", "Your UserId is not not registered with us ");
+			 return "Forgotpassword";
+		 }
+		 
+		if(que.equals(sc.getQuestion()) && ans.equals(sc.getAnswer()))
+		 {
+			// model.addAttribute("message", "Your password is :<b>"+sc.getPassword());
+			
+			session.setAttribute("userid", sc.getUserId());
+			 
+			 return "ResetPassword";	 
+		 }
+		 else
+		 {
+			 model.addAttribute("message", "Invalid secret question credentials ");
+			 return "Forgotpassword";
+			
+		 }
+		
+	}
 	
-	
-	
-	
+	@PostMapping("/resetpwd")
+	public String resetPassword(@RequestParam("password")String pwd,
+			@RequestParam("confirmationpassword")String cpwd,Model model,HttpSession session) {
+		
+		String userid = (String)session.getAttribute("userid"); 
+		
+			
+			if(pwd.equals(cpwd)) 
+			{
+				BankEmployee be = employeeservices.getuserdata(userid);			
+				be.setPassword(pwd);
+				be.setConfirmationpassword(cpwd);
+				
+				boolean status = employeeservices.updatePassword(be);
+				if(status == true) {
+					
+					model.addAttribute("message", "reset password Sucessfully");
+					return "ResetPassword";
+				}
+				else {
+					model.addAttribute("message", "not reset");
+					return "ResetPassword";
+				}
+				
+			}
+			else 
+			{
+				model.addAttribute("message", "new password and conformation are not same");
+				return "ResetPassword";
+			}		
+	}
 }
+	
+	
 

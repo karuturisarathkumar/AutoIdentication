@@ -1,8 +1,12 @@
 package com.Auto_Identication.Auto.Identication.Models;
 
+import java.util.List;
+
 import javax.annotation.Generated;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -11,14 +15,16 @@ import javax.persistence.Table;
 public class Security 
 {
 	@Id
-	@Generated("assgined")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	@Column
 private String userId;
 	@Column
+private String contactNumber;
+	@Column
 private String question;
 	@Column
-private String answer;
+private String answer;	
 	public int getId() {
 		return id;
 	}
@@ -30,6 +36,12 @@ private String answer;
 	}
 	public void setUserId(String userId) {
 		this.userId = userId;
+	}
+	public String getContactNumber() {
+		return contactNumber;
+	}
+	public void setContactNumber(String contactNumber) {
+		this.contactNumber = contactNumber;
 	}
 	public String getQuestion() {
 		return question;
@@ -45,7 +57,9 @@ private String answer;
 	}
 	@Override
 	public String toString() {
-		return "Security [id=" + id + ", userId=" + userId + ", question=" + question + ", answer=" + answer + "]";
+		return "Security [id=" + id + ", userId=" + userId + ", contactNumber=" + contactNumber + ", question="
+				+ question + ", answer=" + answer + "]";
 	}
-
+	
+		
 }

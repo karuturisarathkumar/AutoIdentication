@@ -35,11 +35,12 @@ h1{
 {
 	width: 400px;
 	height: auto;
-	 background-color:gray; 
+	background-color:gray; 
 	text-align: center;
 	border: 2px solid white;
 	border-radius: 15px;
 	margin-left: 20px;
+	margin-top: -64px;
 }
 
 .form-control

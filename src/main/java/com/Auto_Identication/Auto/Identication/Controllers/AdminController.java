@@ -20,6 +20,7 @@ import com.Auto_Identication.Auto.Identication.Models.Admin;
 import com.Auto_Identication.Auto.Identication.Models.AdminLogin;
 import com.Auto_Identication.Auto.Identication.Models.BankEmployee;
 import com.Auto_Identication.Auto.Identication.Models.LoanCustomer;
+import com.Auto_Identication.Auto.Identication.Models.Security;
 import com.Auto_Identication.Auto.Identication.Services.AdminServices;
 
 @Controller
@@ -57,16 +58,20 @@ public String adminVerifyLogin(@ModelAttribute("adminlogin") AdminLogin al,Model
 }
 	
 @GetMapping("/regadmin")	
-public String aRegister(Model model)
+public String aRegister(Model adminmodel,Model secmodel)
 {
 	Admin admin=new Admin();
-	model.addAttribute("admin", admin);
+	adminmodel.addAttribute("admin", admin);
+	Security secure = new Security();
+	secmodel.addAttribute("securityque", secure);
 	return "AdminRegistration";
 }
 	
 @PostMapping("/adminregvalidate")	
-public String adminVerifyRegistration(@ModelAttribute("admin") Admin ad,Model model)
+public String adminVerifyRegistration(@ModelAttribute("admin") Admin ad,@ModelAttribute("securityque") Security sec,Model model)
 {
+	sec.setUserId(ad.getUserId());
+	ad.setSecurity(sec);
 	System.out.println(ad);
 	int res=adminservices.storeAdmin(ad);
 	AdminLogin adminlogin=new AdminLogin();
@@ -179,26 +184,103 @@ public String sixMonth(Model model)
 	return "Adminworkofcustomer";	
 }
 
+@GetMapping("/forgetUId")
+public String forgetId(Model model) {
+	 return "AdminForgotUserId";
+}
 
+@PostMapping("/getUserId")
+public String getUserid(@RequestParam("contactNumber") String contactNumber,
+		@RequestParam("question") String question,
+		@RequestParam("answer") String answer,
+		Model model) {
+	
+	System.out.println(question +" "+answer);
+	 Security sc = adminservices.getSecurity(contactNumber);
+	 System.out.println(sc);
+	 if(sc==null)
+	 {
+		 model.addAttribute("message", "Your contact number is not registered with us ");
+		 return "AdminForgotUserId";
+	 }
+	 
+	if(question.equals(sc.getQuestion()) && answer.equals(sc.getAnswer()))
+	 {
+		 model.addAttribute("message", "Your User Id is :<b>"+sc.getUserId());
+		 return "AdminForgotUserId";	 
+	 }
+	 else
+	 {
+		 model.addAttribute("message", "Invalid secret question credentials ");
+		 return "AdminForgotUserId";	
+		
+	 }	
+}	
+@GetMapping("/forgetpwd")
+public String forgetPwd(Model model) {
+	
+	return "AdminForgotpassword";
+}
+@PostMapping("/getpwd")
+public String getPassword(@RequestParam("userId") String userid,
+		@RequestParam("question") String que,
+		@RequestParam("answer") String ans,
+		   Model model,HttpSession session) {
+	Security sc = adminservices.getSecuritypwd(userid);
+	System.out.println(sc);
+	 if(sc==null)
+	 {
+		 model.addAttribute("message", "Your UserId is not registered with us ");
+		 return "AdminForgotpassword";
+	 }
+	 
+	if(que.equals(sc.getQuestion()) && ans.equals(sc.getAnswer()))
+	 {
+		// model.addAttribute("message", "Your password is :<b>"+sc.getPassword());
+		
+		session.setAttribute("userid", sc.getUserId());
+		 
+		 return "AdminResetPassword";	 
+	 }
+	 else
+	 {
+		 model.addAttribute("message", "Invalid secret question credentials ");
+		 return "AdminForgotpassword";
+		
+	 }	
+}
 
+@PostMapping("/resetpassword")
+public String resetPassword(@RequestParam("password")String pwd,
+		@RequestParam("confirmationpassword")String cpwd,Model model,HttpSession session) {
+	
+	String userid = (String)session.getAttribute("userid");
+	
+	//System.out.println(userid);
+	
+		if(pwd.equals(cpwd)) {
+			
+			Admin ad = adminservices.getuserdata(userid);			
+			ad.setPassword(pwd);
+			ad.setConfirmationpassword(cpwd);
+			
+			boolean status = adminservices.updatePassword(ad);
+			if(status == true) {
+				
+				model.addAttribute("message", "reset password Sucessfully");
+				return "AdminResetPassword";
+			}
+			else {
+				model.addAttribute("message", "not reset");
+				return "AdminResetPassword";
+			}
+		}
+		else {
+			model.addAttribute("message", "new password and conformation are not same");
+			return "AdminResetPassword";
 
-
-
-
-
-
-
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+		}	
+}
 
 @GetMapping("/logout")
 public String logOut()

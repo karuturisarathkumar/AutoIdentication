@@ -7,62 +7,87 @@
 <script>
 function validation()
 {
-var firstname=document.forms["register"]["firstName"].value;
-var lastname=document.forms["register"]["lastName"].value;
-var age=document.forms["register"]["age"].value;
-var gender=document.forms["register"]["gender"].value;
-var number=document.forms["register"]["contactNumber"].value;
-var city=document.forms["register"]["city"].value;
-var state=document.forms["register"]["state"].value;
-var userid=document.forms["register"]["userId"].value;
-var password=document.forms["register"]["password"].value;
-if(firstname==" "|| firstname==null)
-{
-alert("please update the highlighted mandatory fields");
-document.getElementById('Fname').style.borderColor = "red";
-return false;
-}
-else if(lastname==" "|| lastname==null)
-{
-alert("please update the highlighted mandatory fields");
-return false;
-}
-else if(age==0 || age==null)
-{
-alert("please update the highlighted mandatory fields");
-return false;
-}
-else if(gender==" "|| gender==null)
-{
-alert("please update the highlighted mandatory fields");
-return false;
-}
-else if(number==" "|| number==null)
-{
-alert("please update the highlighted mandatory fields");
-return false;
-}
-else if(city==" "|| city==null)
-{
-alert("please update the highlighted mandatory fields");
-document.getElementById('empcity').style.borderColor = "red";
-return false;
-}
-else if(state==" "|| state==null)
-{
-alert("please update the highlighted mandatory fields");
-return false;
-}
-else if(userid==" "|| userid==null)
-{
-alert("please update the highlighted mandatory fields");
-return false;
-}
-else if(password==" "|| password==null)
-{
-alert("please update the highlighted mandatory fields");
-return false;
-}
+	var firstname=document.register.firstName.value;
+	var lastname=document.register.lastName.value;
+	var age=document.register.age.value;
+	var gender=document.register.gender.value;
+	var number=document.register.contactNumber.value;
+	var city=document.register.city.value;
+	var state=document.register.state.value;
+	var userid=document.register.userId.value;
+	var password=document.register.password.value;
+	var answer = document.register.answer.value
+	var confirmpassword = document.register.confirmationpassword.value;
+	if(firstname==""|| firstname==null)
+	{
+	alert("please update the highlighted mandatory fields");
+	document.getElementById('Fname').style.borderColor = "red";
+	return false;
+	}
+	if(lastname==""|| lastname==null)
+	{
+	  alert("Please update the highlighted mandatory field(s).");
+	  document.getElementById('Lname').style.borderColor = "red";
+	  return false;
+	}
+	if(age==0 || age==null || age =="")
+	{
+		alert("Please update the highlighted mandatory field(s).");
+		 document.getElementById('Age').style.borderColor = "red";
+		 return false;
+	}
+	if(gender==""|| gender==null)
+	{
+	 alert("please select gender");	
+	 return false;
+	} 
+	if(number==""|| number==null)
+	{
+		 alert("Please update the highlighted mandatory field(s).");
+		 document.getElementById('ContactNumber').style.borderColor = "red";
+		 return false;
+	}
+	if(city==""|| city==null)
+	{
+		 alert("Please update the highlighted mandatory field(s).");
+		 document.getElementById('City').style.borderColor = "red";
+		 return false;
+	}
+	if(state==""|| state==null)
+	{
+		alert("Please update the highlighted mandatory field(s).");
+		document.getElementById('State').style.borderColor = "red";
+		return false;
+	}
+	if(userid==""|| userid==null)
+	{
+		alert("Please update the highlighted mandatory field(s).");
+		document.getElementById('UserId').style.borderColor = "red";
+		return false;
+		 
+	}
+	if(password==""|| password==null)
+	{
+		alert("Please update the highlighted mandatory field(s).");
+		document.getElementById('Password').style.borderColor = "red";
+		return false;
+	}
+	if(answer==""|| answer==null)
+	{
+		alert("Please update the highlighted mandatory field(s).");
+		document.getElementById('Answer').style.borderColor = "red";
+		return false;
+	}
+	if(confirmpassword==""|| confirmpassword==null)
+	{
+		alert("Please update the highlighted mandatory field(s).");
+		document.getElementById('confirmPassword').style.borderColor = "red";
+		return false;
+	}
+	if(password!=confirmpassword){
+		alert("The password and confirm password should be same");
+		return false;
+		}	
 }
 </script>
 <meta charset="ISO-8859-1">
@@ -70,7 +95,7 @@ return false;
 <link rel="stylesheet" type="text/css" href="/style.css">
 </head>
 <body>
-<div class="header1">
+<div class="header1" align="center">
 <h1>Bank Employee - Registration</h1>
 </div>
 <div align="center">
@@ -80,82 +105,80 @@ return false;
 <tr>
 <td>User Id <b style="color: red"> * </b> </td>
 <td>
-<form:input path="userId" id="userId" class="form-control"/>
-<br>
+<form:input path="userId" id="UserId" class="form-control" onfocus="validateuserid()"/>
 <form:errors path="userId" cssClass="errors"></form:errors>
-<br>
 </td>
 </tr>
 <tr>
 <td>First Name  <b style="color: red"> * </b></td>
 <td>
-<form:input path="firstName" id="Fname" class="form-control"/>
-<br>
+<form:input path="firstName" id="Fname" class="form-control" onfocus="validateFirstname()"/>
 <form:errors path="firstName" cssClass="errors"></form:errors>
-<br>
 </td>
 </tr>
 <tr>
 <td>Last Name  <b style="color: red"> * </b></td>
 <td>
-<form:input path="lastName"  id="lastName" class="form-control"/>
-<br>
+<form:input path="lastName"  id="Lname" class="form-control" onfocus="validateLastname()"/>
 <form:errors path="lastName" cssClass="errors"></form:errors>
-<br>
 </td>
 </tr>
 <tr>
 <td>Age  <b style="color: red"> * </b></td>
 <td>
-<form:input path="age" id="age" class="form-control"/>
-<br>
+<form:input path="age" id="Age" class="form-control" onfocus="validateage()"/>
 <form:errors path="age" cssClass="errors"></form:errors>
-<br>
 </td>
 </tr>
-<tr>
+<%-- <tr>
 <td>Gender  <b style="color: red"> * </b></td>
 <td>
-<form:input path="gender" id="gender" class="form-control"/>
-<br>
+<form:input path="gender" id="Gender" class="form-control" onfocus="validategender()"/>
 <form:errors path="gender" id="" cssClass="errors"></form:errors>
-<br>
 </td>
 </tr>
-<tr>
+ --%>
+ <tr>
+ <td>Gender  <b style="color: red"> * </b></td>
+ <td>
+ <form:radiobutton path="gender" value="Male" label="Male" cssStyle="margin-left:-65px;"/>
+ <form:radiobutton path="gender" value="Female" label="Female"/>
+ </td> 
+ </tr>
+<tr> 
 <td>Contact Number  <b style="color: red"> * </b> </td>
 <td>
-<form:input path="contactNumber" id="contactNumber" class="form-control"/>
-<br>
+<form:input path="contactNumber" id="ContactNumber" class="form-control" onfocus="validatemobile()"/>
 <form:errors path="contactNumber" cssClass="errors"></form:errors>
-<br>
 </td>
 </tr>
 <tr>
 <td>City  <b style="color: red"> * </b></td>
 <td>
-<form:input path="city" id="empcity" class="form-control"/>
-<br>
+<form:input path="city" id="City" class="form-control" onfocus="validatecity()"/>
 <form:errors path="city" cssClass="errors"></form:errors>
-<br>
 </td>
 </tr>
 <tr>
 <td>State  <b style="color: red"> * </b></td>
 <td>
-<form:input path="state" id="state"  class="form-control"/>
-<br>
+<form:input path="state" id="State"  class="form-control" onfocus="validatestate()"/>
 <form:errors path="state" cssClass="errors"></form:errors>
-<br>
 </td>
 </tr>
-
 <tr>
 <td>Password  <b style="color: red"> * </b></td>
 <td>
-<form:password path="password" id="password" class="form-control"/>
-<br>
+<form:password path="password" id="Password" class="form-control" onfocus="validatepassword()"/>
 <form:errors path="password" cssClass="errors"></form:errors>
+<br>
+</td>
+</tr>
+<tr>
+<td>Confirmation Paasword  <b style="color: red"> * </b></td>
+<td>
+<form:password path="confirmationpassword" id="confirmPassword" class="form-control" onfocus="validatecpassword()"/>
+<form:errors path="confirmationpassword" cssClass="errors"></form:errors>
 <br>
 </td>
 </tr>
@@ -163,17 +186,17 @@ return false;
 <tr>
 <td>Questions <b style="color: red"> * </b></td>
 <td>
-<form:select path="question">
-<form:option value="1">what is your pet name?</form:option>
-<form:option value="2">what is your grandmother name?</form:option>
-<form:option value="3">what is your school name?</form:option>
+<form:select path="question" style="margin-bottom:2px;margin-top:12px;padding:4px">
+<form:option value="what is your pet name?">what is your pet name?</form:option>
+<form:option value="what is your nick name?">what is your nick name?</form:option>
+<form:option value="what is your school name?">what is your school name?</form:option>
 </form:select>
 </td>
 </tr>
 <tr>
 <td>Answer <b style="color: red"> * </b></td>
 <td>
-<form:input path="answer"/>
+<form:input path="answer" id="Answer" class="form-control" onfocus="validateanswer()"/>
 </td>
 </tr>
 </form:form>
@@ -186,5 +209,40 @@ Existing Bank Employee?<a href="/emp/" style="color:white;">Login</a>
 </div>
 <a href="/" style="color:black;">Home Page</a>
 </div>
+<script type="text/javascript">
+function validateFirstname(){
+	document.getElementById('Fname').style.borderColor = "gray";
+}
+function validateLastname(){
+	document.getElementById('Lname').style.borderColor = "gray";
+}
+function validateage(){
+	document.getElementById('Age').style.borderColor = "gray";
+}
+function validategender(){
+	document.getElementById('Gender').style.borderColor = "gray";
+}
+function validatemobile(){
+	document.getElementById('ContactNumber').style.borderColor = "gray";
+}
+function validatecity(){
+	document.getElementById('City').style.borderColor = "gray";
+}
+function validatestate(){
+	document.getElementById('State').style.borderColor = "gray";
+}
+function validateuserid(){
+	document.getElementById('UserId').style.borderColor = "gray";
+}
+function validatepassword(){
+	document.getElementById('Password').style.borderColor = "gray";
+}
+function validatecpassword(){
+	document.getElementById('confirmPassword	').style.borderColor = "gray";
+}
+function validateanswer(){
+	document.getElementById('Answer').style.borderColor = "gray";
+}
+</script>
 </body>
 </html>
