@@ -240,9 +240,9 @@ session.setAttribute("account", res);
 			return "emphome";
 		}
 		model.addAttribute("card",lc.getCard());
-		return "search";
+		return "cardstatus";
 	}
-	@GetMapping("/reactive")
+	@PostMapping("/reactive")
 	public String reActivate(@RequestParam("reason") String rs,Model model,HttpSession session)
 	{
 		int res=(int) session.getAttribute("account");
@@ -254,7 +254,7 @@ session.setAttribute("account", res);
 			LoanCustomer cardloan=loandao.save(lc);
 			if(cardloan!=null)
 			{
-				model.addAttribute("message","card is re-cativated");
+				model.addAttribute("message","card is re-activated");
 				return "emphome";
 			}
 			else
@@ -264,6 +264,30 @@ session.setAttribute("account", res);
 			}
 		}
 		model.addAttribute("message","already in re-actived");
+		return "emphome";
+	}
+	@GetMapping("/blockcard")
+	public String deActivate(Model model,HttpSession session)
+	{
+		int res=(int) session.getAttribute("account");
+		LoanCustomer lc=loandao.findByaccountNumber(res);
+		if(lc.getCard().getCardStatus().equals("active"))
+		{
+			lc.getCard().setCardStatus("deactive");
+			//lc.getCard().setReActivationReason(rs);
+			LoanCustomer cardloan=loandao.save(lc);
+			if(cardloan!=null)
+			{
+				model.addAttribute("message","card is decativated");
+				return "emphome";
+			}
+			else
+			{
+				model.addAttribute("message","card is not decativated");
+				return "emphome";
+			}
+		}
+		model.addAttribute("message","already  deactived");
 		return "emphome";
 	}
 	@GetMapping("/charges")
@@ -329,11 +353,60 @@ session.setAttribute("account", res);
 	
 	}
 	
+	@GetMapping("/empsetvalidate")
+	public String statusValidate(@RequestParam("id") int res,Model model)
+	{
+	LoanCustomer lc=loandao.findByaccountNumber(res);
+	lc.setStatus("validate");
+	LoanCustomer lc1=loandao.save(lc);
+	if(lc1!=null)
+	{
+	    model.addAttribute("message",lc.getCustomerName()+" is now a validator");
+		return "emphome";
+	}
+	else
+	{
+		 model.addAttribute("message",lc.getCustomerName()+" is not updated as validator");
+			return "emphome";
+	}
+	}
+
+	@GetMapping("/empsetwaver")
+	public String statusAutowaver(@RequestParam("id") int res,Model model)
+	{
+	LoanCustomer lc=loandao.findByaccountNumber(res);
+	lc.setStatus("autowaver");
+	LoanCustomer lc1=loandao.save(lc);
+	if(lc1!=null)
+	{
+	    model.addAttribute("message",lc.getCustomerName()+" is now a autowaver");
+		return "emphome";
+	}
+	else
+	{
+		 model.addAttribute("message",lc.getCustomerName()+" is not updated as autowaver");
+			return "emphome";
+	}
+	}
 	
 	
-	
-	
-	
+	@GetMapping("/empsetdefault")
+	public String statusDefaulter(@RequestParam("id") int res,Model model)
+	{
+	LoanCustomer lc=loandao.findByaccountNumber(res);
+	lc.setStatus("defaulter");
+	LoanCustomer lc1=loandao.save(lc);
+	if(lc1!=null)
+	{
+	    model.addAttribute("message",lc.getCustomerName()+" is now a defaulter");
+		return "emphome";
+	}
+	else
+	{
+		 model.addAttribute("message",lc.getCustomerName()+" is not updated as defaulter");
+			return "emphome";
+	}
+	}
 	
 	
 	

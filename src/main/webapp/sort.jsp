@@ -10,18 +10,19 @@
 </head>
 <body>
 <div align="center" style="padding-top: 60px; ">
-<form action="#" method="post">
+<form action="/admin/sort" method="post">
 <select name="number" style="height: 40px" >
-<option value=" accountNumber">account number</option>
+<option value="accountNumber">account number</option>
 <option value="dues">dues</option>
 <option value="moneyPaid">amount paid</option>
 </select>
+<select name="order" style="height: 40px" >
+<option value="ass">Asscending</option>
+<option value="des">Descending</option>
+</select>
 <input type="submit" value="sort" style="height: 25px;width: 50px;">
 </form>
-
-</div>
-<div>
-
+<c:out value="${customerList}"></c:out>
 </div>
 <%
 

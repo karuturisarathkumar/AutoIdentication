@@ -8,6 +8,20 @@
 <title>Insert title here</title>
 </head>
 <body>
+<div align="center" style="padding-top: 60px; ">
+<form action="/admin/sort" method="post">
+<select name="number" style="height: 40px" >
+<option value="accountNumber">account number</option>
+<option value="dues">dues</option>
+<option value="moneyPaid">amount paid</option>
+</select>
+<select name="order" style="height: 40px" >
+<option value="ass">Asscending</option>
+<option value="des">Descending</option>
+</select>
+<input type="submit" value="sort" style="height: 25px;width: 50px;">
+</form>
+</div>
 <div align="center">
 <table border="2"  style="background-color: black;">
  <tr>
@@ -40,7 +54,7 @@
            <td>${customer.fine}</td>
            <td>${customer.accuralStatus}</td>
            <td>${customer.borrowerRating}</td>
-           <td>${customer.status}<button><a href="#" style="color: red;">Validate</a></button><button><a href="#" style="color: red;">AutoWaver</a></button></td>
+           <td>${customer.status}<button><a href="/admin/setvalidate?id=${customer.accountNumber}" style="color: red;">Validate</a></button><button><a href="/admin/setautowaver?id=${customer.accountNumber}" style="color: red;">AutoWaver</a></button><button><a href="/admin/setdefaulter?id=${customer.accountNumber}" style="color: red;">defaulter</a></button></td>
            
 </c:forEach>
 
@@ -55,10 +69,12 @@
            <td>${customer.mobile}</td>
            <td>${customer.lastPaid}</td>
            <td>${customer.dues}</td>
+           <td>${customer.moneyPaid}</td>
+            <td>${customer.fine}</td>
            <td>${customer.accuralStatus}</td>
            <td>${customer.borrowerRating}</td>
            <td>${customer.status}</td>
-           <td><button><a href="#" style="color: red;">send alert</a></button></td>
+           <td><button><a href="/admin/sendalert?id=${customer.accountNumber}" style="color: red;">send alert</a></button></td>
 </c:forEach>
 </table>
 </div>

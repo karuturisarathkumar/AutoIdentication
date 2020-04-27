@@ -14,7 +14,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 @Entity
 @Table(name="loancustomer")
-public class LoanCustomer 
+public class LoanCustomer implements Comparable<LoanCustomer>
 {
 	@Id
 	@Generated("assigned")
@@ -137,6 +137,11 @@ private Card card;
 				+ borrowedAmount + ", tenure=" + tenure + ", moneyPaid=" + moneyPaid + ", fine=" + fine + ", email="
 				+ email + ", mobile=" + mobile + ", lastPaid=" + lastPaid + ", dues=" + dues + ", accuralStatus="
 				+ accuralStatus + ", borrowerRating=" + borrowerRating + ", status=" + status + ", card=" + card + "]";
+	}
+	@Override
+	public int compareTo(LoanCustomer o) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 	

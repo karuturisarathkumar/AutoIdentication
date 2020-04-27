@@ -32,15 +32,24 @@ if(user==null)
 </div>
 </li>
 <li ><a href="/admin/getemplist"><i class="fa fa-user"></i>NewEmployee</a></li>
-<li ><a href="/admin/ativates"><i class="fa fa-universal-access"></i>Reactivation</a></li>
+<li><a href="#"><i class="fa fa-credit-card"></i>Cards</a>
+<div class="sub-menu-1">
+<ul>
+<li><a href="/admin/ativates"><i class="fa fa-universal-access"></i>Reactivation</a></li>
+<li><a href="/admin/deactivates"><i class="fa fa-ban"></i>deactivation</a></li>
+</ul>
+</div>
+</li>
+
+
 <li ><a href="#"><i class="fa fa-flag"></i>Report</a>
 <div class="sub-menu-1">
 <ul>
 <li><a href="/admin/genRep">Over all report</a></li>
-<li><a href="/admin/autodef">no.of AutoDefaulter</a></li>
-<li><a href="#">no.of ManualDefaulter</a></li>
-<li><a href="#">no.of Autowavers</a></li>
-<li><a href="#">no.of validators</a></li>
+<li><a href="/admin/autocustlist">no.of AutoDefaulter</a></li>
+<li><a href="/admin/manualcustlist">no.of ManualDefaulter</a></li>
+<li><a href="/admin/DefList">no.of Defalters</a></li>
+<li><a href="/admin/activationList">no.of Re_activations</a></li>
 
 
 </ul>

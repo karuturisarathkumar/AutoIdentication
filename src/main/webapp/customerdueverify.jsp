@@ -37,8 +37,9 @@
    <tr>
   <td>status</td>  
   <td><c:out value="${customer.status}"></c:out></td> 
-  <td ><a herf="#"><button style="width: 80px;">validate</button></a></td>
-   <td><a herf="#"><button>AutoWaver</button></a></td>
+  <td ><a href="/emp/empsetvalidate?id=${customer.accountNumber}"><button style="width: 80px;">validate</button></a></td>
+   <td><a href="/emp/empsetwaver?id=${customer.accountNumber}"><button>AutoWaver</button></a></td>
+   <td><a href="/emp/empsetdefault?id=${customer.accountNumber}"><button>Defaulter</button></a></td>
  </tr>
   <tr>
   <td>lastpaid on</td>  
@@ -63,8 +64,8 @@
   <tr>
   <td>card status</td>  
   <td><c:out value="${card.cardStatus}"></c:out></td> 
-  <td><a herf="#"><button>Re-activate</button></a></td>
-   <td><a herf="#"><button>Deactivate</button></a></td>
+  <td><a href="/emp/cards"><button>Re-activate</button></a></td>
+   <td><a href="/emp/cards"><button>Deactivate</button></a></td>
  </tr>
 </table>
 <a href="/emp/alert"><button>alert</button></a>

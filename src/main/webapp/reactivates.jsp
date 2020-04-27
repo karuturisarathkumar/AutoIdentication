@@ -25,7 +25,7 @@
   <td>${cus.customerName}</td>  
   <td>${cus.expDate}</td> 
   <td>${cus.reActivationReason}</td> 
-  <td><a href="/admin//verifycard?id=${cus.accountNumber}"><button>Activate</button></a><a href="/admin/decCard?id=${cus.accountNumber}"><button>deactivate</button></a></td> 
+  <td>${cus.cardStatus}<a href="/admin//verifycard?id=${cus.accountNumber}"><button>Activate</button></a><a href="/admin/decCard?id=${cus.accountNumber}"><button>deactivate</button></a></td> 
   </tr>
   </c:forEach>
 </table>
