@@ -64,6 +64,7 @@ if(user==null)
 <li><a href="#">Mail id:-karuturisarathkumar@gmail.com</a></li>
 </ul>
 </div>
+<li ><a href="/admin/getlist"><i class="bi bi-envelope-fill"></i>Technical Issues</a></li>
 </li>
 </ul>
 </div>

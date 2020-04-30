@@ -8,10 +8,12 @@ import org.springframework.stereotype.Service;
 
 import com.Auto_Identication.Auto.Identication.Dao.AdminDao;
 import com.Auto_Identication.Auto.Identication.Dao.EmployeeDao;
+import com.Auto_Identication.Auto.Identication.Dao.IssuesDao;
 import com.Auto_Identication.Auto.Identication.Dao.LoanCustomerDao;
 import com.Auto_Identication.Auto.Identication.Models.Admin;
 import com.Auto_Identication.Auto.Identication.Models.AdminLogin;
 import com.Auto_Identication.Auto.Identication.Models.BankEmployee;
+import com.Auto_Identication.Auto.Identication.Models.Issues;
 import com.Auto_Identication.Auto.Identication.Models.LoanCustomer;
 import com.Auto_Identication.Auto.Identication.Models.Security;
 @Component
@@ -24,6 +26,8 @@ private AdminDao admindao;
 private EmployeeDao employeedao;
 	@Autowired
 	private LoanCustomerDao loandao;
+	@Autowired
+	private IssuesDao issuedao;
 	@Override
 	public int storeAdmin(Admin admin) 
 	{
@@ -105,5 +109,14 @@ private EmployeeDao employeedao;
 	public Admin getuserdata(String userId) {
 		return admindao.getAdmin(userId);
 	}
+
+	@Override
+	public List<Issues> findAll() {
+		// TODO Auto-generated method stub
+		return issuedao.findAll();
+	}
+
+	
+	
 
 }

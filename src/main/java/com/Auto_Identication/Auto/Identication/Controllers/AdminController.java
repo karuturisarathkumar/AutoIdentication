@@ -14,15 +14,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.Auto_Identication.Auto.Identication.Dao.EmployeeDao;
+import com.Auto_Identication.Auto.Identication.Dao.IssuesDao;
 import com.Auto_Identication.Auto.Identication.Dao.LoanCustomerDao;
 import com.Auto_Identication.Auto.Identication.Models.Admin;
 import com.Auto_Identication.Auto.Identication.Models.AdminLogin;
 import com.Auto_Identication.Auto.Identication.Models.BankEmployee;
 import com.Auto_Identication.Auto.Identication.Models.Card;
+import com.Auto_Identication.Auto.Identication.Models.Issues;
 import com.Auto_Identication.Auto.Identication.Models.LoanCustomer;
 import com.Auto_Identication.Auto.Identication.Models.Security;
 import com.Auto_Identication.Auto.Identication.Services.AdminServices;
@@ -36,12 +39,37 @@ public class AdminController {
 	private EmployeeDao employeedao;
 	@Autowired
 	private LoanCustomerDao loandao;
-
+	@Autowired
+	private IssuesDao issuesdao;
+	
 	@GetMapping("/")
 	public String aLogin(Model model) {
 		AdminLogin adminlogin = new AdminLogin();
 		model.addAttribute("adminlogin", adminlogin);
 		return "AdminLogin";
+	}
+	@GetMapping("/getlist")
+	public String getlist(Model model) {
+	//public List<Issues> getlist(){
+		//return issuesdao.findAll();
+		List<Issues> issues = adminservices.findAll();
+		model.addAttribute("issues", issues);
+		return "showIssues";
+	}
+	@GetMapping("/issues")
+	public String issues(Model model) {
+		model.addAttribute("logissue", new Issues());
+		
+		return "issues";
+	}
+	@PostMapping("/issue")
+	public String issue(@ModelAttribute("logissue") Issues il,Model model){
+
+		issuesdao.save(il);
+		model.addAttribute("issue", "Your issues were sent");
+	
+		return  "home";
+		
 	}
 
 	@PostMapping("/logadmin")
