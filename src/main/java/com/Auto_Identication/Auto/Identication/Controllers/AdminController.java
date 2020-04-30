@@ -294,7 +294,8 @@ public String adminVerifyRegistration(@ModelAttribute("admin") Admin ad,@ModelAt
 		List<LoanCustomer> custlist = adminservices.customerlist();
 		for (LoanCustomer customer : custlist) {
 			int due = customer.getDues() * 30;
-			if (customer.getStatus().equals("defaulter")) {
+			if (customer.getStatus().equals("defaulter")) 
+			{
 				count++;
 				if (customer.getBorrowerRating() >= 8
 						&& (customer.getAccuralStatus() == 2 || customer.getAccuralStatus() == 3
@@ -308,14 +309,17 @@ public String adminVerifyRegistration(@ModelAttribute("admin") Admin ad,@ModelAt
 						|| customer.getAccuralStatus() == 6 || customer.getAccuralStatus() == 7)) {
 					manualcount++;
 				}
-			} else if (customer.getCard().getCardStatus().equals("Re-active")) {
+			} 
+		 if (customer.getCard().getCardStatus().equals("Re-active")) 
+			{
+
 				validcount++;
 			}
 
 		}
 		model.addAttribute("auto", autocount);
 		model.addAttribute("manual", manualcount);
-		System.out.println(count);
+		
 		model.addAttribute("calul", count);
 		model.addAttribute("req", validcount);
 		return "report";
@@ -522,6 +526,8 @@ public String adminVerifyRegistration(@ModelAttribute("admin") Admin ad,@ModelAt
 	{
 	LoanCustomer lc=loandao.findByaccountNumber(res);
 	lc.setStatus("validate");
+	lc.setAccuralStatus(9);
+	lc.setBorrowerRating(1);
 	LoanCustomer lc1=loandao.save(lc);
 	if(lc1!=null)
 	{
@@ -640,6 +646,8 @@ public String statusAutoWaver(@RequestParam("id") int res,Model model)
 {
 LoanCustomer lc=loandao.findByaccountNumber(res);
 lc.setStatus("autowaver");
+lc.setAccuralStatus(8);
+lc.setBorrowerRating(3);
 LoanCustomer lc1=loandao.save(lc);
 if(lc1!=null)
 {
@@ -659,6 +667,17 @@ public String statusDefaulter(@RequestParam("id") int res,Model model)
 {
 LoanCustomer lc=loandao.findByaccountNumber(res);
 lc.setStatus("defaulter");
+if(lc.getDues()>=8)
+{
+	lc.setBorrowerRating(10);
+	lc.setAccuralStatus(5);
+}
+else if(lc.getDues()>=5 && lc.getDues()<8)
+{
+	lc.setBorrowerRating(7);
+	lc.setAccuralStatus(7);
+	
+}
 LoanCustomer lc1=loandao.save(lc);
 if(lc1!=null)
 {

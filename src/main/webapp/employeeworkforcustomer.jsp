@@ -9,8 +9,8 @@
 </head>
 
 <body>
-<div align="center">
-<table border="2" style="background-color: black">
+<div align="center" style="padding-top: 50px;">
+<table border="2" style="background-color: black;">
 <c:forEach items="${custlist}" var="customer">
 <tr>
      <td><a href="/emp/details?id=${customer.accountNumber}"  style="color: white;">${customer.accountNumber}</a></td>

@@ -19,11 +19,11 @@ public List<LoanCustomer> dueAssSort(List<LoanCustomer> cus)
 		{
 		if(o1.getDues()>o2.getDues())
 		{
-			return -1;
+			return 1;
 		}
 		else if(o1.getDues()<o2.getDues())
 		{
-			return 1;
+			return -1;
 		}
 		else
 		{
@@ -46,11 +46,11 @@ public List<LoanCustomer> dueDesSort(List<LoanCustomer> cus)
 		{
 		if(o1.getDues()>o2.getDues())
 		{
-			return 1;
+			return -1;
 		}
 		else if(o1.getDues()<o2.getDues())
 		{
-			return -1;
+			return 1;
 		}
 		else
 		{
@@ -73,11 +73,11 @@ public List<LoanCustomer> accAssSort(List<LoanCustomer> cus)
 		{
 		if(o1.getAccountNumber()>o2.getAccountNumber())
 		{
-			return -1;
+			return 1;
 		}
 		else if(o1.getAccountNumber()>o2.getAccountNumber())
 		{
-			return 1;
+			return -1;
 		}
 		else
 		{
@@ -100,11 +100,11 @@ public List<LoanCustomer> accDesSort(List<LoanCustomer> cus)
 		{
 		if(o1.getAccountNumber()>o2.getAccountNumber())
 		{
-			return 1;
+			return -1;
 		}
 		else if(o1.getAccountNumber()>o2.getAccountNumber())
 		{
-			return -1; 
+			return 1; 
 		}
 		else
 		{

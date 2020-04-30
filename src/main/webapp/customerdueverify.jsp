@@ -38,7 +38,7 @@
   <td>status</td>  
   <td><c:out value="${customer.status}"></c:out></td> 
   <td ><a href="/emp/empsetvalidate?id=${customer.accountNumber}"><button style="width: 80px;">validate</button></a></td>
-   <td><a href="/emp/empsetwaver?id=${customer.accountNumber}"><button>AutoWaver</button></a></td>
+   <td><a href="/emp/empsetwaver?id=${customer.accountNumber}"><button>Auto waver</button></a></td>
    <td><a href="/emp/empsetdefault?id=${customer.accountNumber}"><button>Defaulter</button></a></td>
  </tr>
   <tr>

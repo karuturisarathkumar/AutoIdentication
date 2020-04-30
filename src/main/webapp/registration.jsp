@@ -18,6 +18,13 @@ function validation()
 	var password=document.register.password.value;
 	var answer = document.register.answer.value
 	var confirmpassword = document.register.confirmationpassword.value;
+	if(userid==""|| userid==null)
+	{
+		alert("Please update the highlighted mandatory field(s).");
+		document.getElementById('UserId').style.borderColor = "red";
+		return false;
+		 
+	}
 	if(firstname==""|| firstname==null)
 	{
 	alert("please update the highlighted mandatory fields");
@@ -59,13 +66,7 @@ function validation()
 		document.getElementById('State').style.borderColor = "red";
 		return false;
 	}
-	if(userid==""|| userid==null)
-	{
-		alert("Please update the highlighted mandatory field(s).");
-		document.getElementById('UserId').style.borderColor = "red";
-		return false;
-		 
-	}
+	
 	if(password==""|| password==null)
 	{
 		alert("Please update the highlighted mandatory field(s).");

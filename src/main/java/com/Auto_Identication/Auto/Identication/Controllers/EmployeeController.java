@@ -128,7 +128,6 @@ public String empLoginVerify(@ModelAttribute("bankemployeelogin") BankEmployeeLo
 	{
 		session.setAttribute("refer", res);
 		LoanCustomer lc=loandao.findByaccountNumber(res);
-		System.out.println(lc);
 		cusmodel.addAttribute("customer",lc);
 		model.addAttribute("card",lc.getCard());
 		return "customerdueverify";
@@ -282,7 +281,7 @@ session.setAttribute("account", res);
 		if(lc.getCard().getCardStatus().equals("active"))
 		{
 			lc.getCard().setCardStatus("deactive");
-			//lc.getCard().setReActivationReason(rs);
+			lc.getCard().setReActivationReason("failed to pay");
 			LoanCustomer cardloan=loandao.save(lc);
 			if(cardloan!=null)
 			{
@@ -366,6 +365,8 @@ session.setAttribute("account", res);
 	{
 	LoanCustomer lc=loandao.findByaccountNumber(res);
 	lc.setStatus("validate");
+	lc.setAccuralStatus(9);
+	lc.setBorrowerRating(1);
 	LoanCustomer lc1=loandao.save(lc);
 	if(lc1!=null)
 	{
@@ -384,6 +385,8 @@ session.setAttribute("account", res);
 	{
 	LoanCustomer lc=loandao.findByaccountNumber(res);
 	lc.setStatus("autowaver");
+	lc.setAccuralStatus(8);
+	lc.setBorrowerRating(3);
 	LoanCustomer lc1=loandao.save(lc);
 	if(lc1!=null)
 	{
@@ -472,6 +475,17 @@ session.setAttribute("account", res);
 	{
 	LoanCustomer lc=loandao.findByaccountNumber(res);
 	lc.setStatus("defaulter");
+	if(lc.getDues()>=8)
+	{
+		lc.setBorrowerRating(10);
+		lc.setAccuralStatus(5);
+	}
+	else if(lc.getDues()>=5 && lc.getDues()<8)
+	{
+		lc.setBorrowerRating(7);
+		lc.setAccuralStatus(7);
+		
+	}
 	LoanCustomer lc1=loandao.save(lc);
 	if(lc1!=null)
 	{

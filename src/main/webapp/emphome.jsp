@@ -48,8 +48,8 @@ if(user==null)
 </li>
 </ul>
 </div>
-<div style="position:fixed; right:0; left:0; bottom: 5px;">
-<h1 style="color: red;font-size: 30px;"><marquee>${message}</marquee></h1>
+<div style="text-align: center;">
+<h1 style="color: green; font-size: 40px;">${message}</h1>
 </div>
 </body>
 </html>

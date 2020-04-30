@@ -50,7 +50,7 @@ ${message }
 <tr>
 <td style="color: white">Password</td>
 <td>
-<form:input path="password" id="Pwd" class="form-control" onfocus="validatepwd()"/>
+<form:password path="password" id="Pwd" class="form-control" onfocus="validatepwd()"/>
 <br>
 <form:errors path="password" cssClass="errors"></form:errors>
 <a href="/emp/forgot" style="font-size: 13px;">forgot password?</a>

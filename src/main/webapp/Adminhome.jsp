@@ -70,7 +70,7 @@ if(user==null)
 
 
 <div style="position:fixed; right:0; left:0; bottom: 5px;">
-<h1 style="color: red;font-size: 30px;"><marquee>${message}</marquee></h1>
+<h1 style="color: blue;font-size: 40px; text-align: center; padding-bottom: 250px;">${message}</h1>
 </div>
 </body>
 </html>
