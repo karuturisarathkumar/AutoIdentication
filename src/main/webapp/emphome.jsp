@@ -25,27 +25,7 @@ if(user==null)
 
 <li ><a href="/emp/cards"><i class="fa fa-credit-card"></i>Re-activate cards</a></li>
 
-<li ><a href="#"><i class="fa fa-user-times"></i>Due List</a>
-<div class="sub-menu-1">
-<ul>
-<li><a href="/emp/duelessthree">Less than Three Months</a></li>
-<li><a href="/emp/duelesssix">Between 3 to 6</a></li>
-<li><a href="/emp/duelesstwelve">Between 6 to 12</a></li>
-<li><a href="/emp/duegreatertwelve">Greater than 12 Months</a></li>
-<li><a href="#">All Customers</a></li>
-</ul>
-</div>
-</li>
 
-<li ><a href="/"><i class="fa fa-power-off"></i>Logout</a></li>
-<li ><a href="#"><i class="fa fa-phone"></i>contact us</a>
-<div class="sub-menu-1">
-<ul>
-<li style="width: 250px;"><a href="#">phone:+(91)-8688292729</a></li>
-<li><a href="#">Mail id:-karuturisarathkumar@gmail.com</a></li>
-</ul>
-</div>
-<li ><a href="/admin/getlist"><i class="bi bi-envelope-fill"></i>Technical Issues</a></li>
 </li>
 </ul>
 </div>
