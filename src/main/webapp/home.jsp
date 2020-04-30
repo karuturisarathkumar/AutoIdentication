@@ -17,10 +17,13 @@
 <li><a href="/admin/"><i class="fa fa-user-o"></i>AIP Admin</a></li>
 <li><a href="/emp/"><i class="fa fa-user"></i>Bank Employee</a></li>
 </ul>
-</div>
 
+</div>
+<div class="topright">
+<a href="/admin/issues"><i class="fa fa-wrench" aria-hidden="true" ></i>Issues</a>
+</div>
 </head>
-<body>
+
 
 
 </body>

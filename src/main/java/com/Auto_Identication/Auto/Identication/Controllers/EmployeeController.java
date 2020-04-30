@@ -21,6 +21,7 @@ import com.Auto_Identication.Auto.Identication.Dao.EmployeeDao;
 import com.Auto_Identication.Auto.Identication.Dao.LoanCustomerDao;
 import com.Auto_Identication.Auto.Identication.Models.BankEmployee;
 import com.Auto_Identication.Auto.Identication.Models.BankEmployeeLogin;
+import com.Auto_Identication.Auto.Identication.Models.Issues;
 import com.Auto_Identication.Auto.Identication.Models.LoanCustomer;
 import com.Auto_Identication.Auto.Identication.Models.Security;
 import com.Auto_Identication.Auto.Identication.Services.EmployeeServices;
@@ -248,6 +249,14 @@ session.setAttribute("account", res);
 		}
 		model.addAttribute("card",lc.getCard());
 		return "cardstatus";
+	}
+	@GetMapping("/getlist")
+	public String getlist(Model model) {
+	//public List<Issues> getlist(){
+		//return issuesdao.findAll();
+		List<Issues> issues = employeeservices.findAll();
+		model.addAttribute("issues", issues);
+		return "showIssues";
 	}
 	@PostMapping("/reactive")
 	public String reActivate(@RequestParam("reason") String rs,Model model,HttpSession session)

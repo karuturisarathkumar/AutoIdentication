@@ -7,9 +7,11 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.Auto_Identication.Auto.Identication.Dao.EmployeeDao;
+import com.Auto_Identication.Auto.Identication.Dao.IssuesDao;
 import com.Auto_Identication.Auto.Identication.Dao.LoanCustomerDao;
 import com.Auto_Identication.Auto.Identication.Models.BankEmployee;
 import com.Auto_Identication.Auto.Identication.Models.BankEmployeeLogin;
+import com.Auto_Identication.Auto.Identication.Models.Issues;
 import com.Auto_Identication.Auto.Identication.Models.LoanCustomer;
 import com.Auto_Identication.Auto.Identication.Models.Security;
 @Service
@@ -19,7 +21,9 @@ public class EmployeeServicesImpl implements EmployeeServices
 	@Autowired
 private EmployeeDao employeedao;
 	@Autowired
-	private LoanCustomerDao loandao;	
+	private LoanCustomerDao loandao;
+	@Autowired
+	private IssuesDao issuedao;
 	
 	@Override
 	public int storeEmployee(BankEmployee bankemployee)
@@ -121,6 +125,11 @@ private EmployeeDao employeedao;
 	public BankEmployee getuserdata(String userId) {
 		
 		return employeedao.getEmployee(userId);
+	}
+	@Override
+	public List<Issues> findAll() {
+		// TODO Auto-generated method stub
+		return issuedao.findAll();
 	}
 	
 	
