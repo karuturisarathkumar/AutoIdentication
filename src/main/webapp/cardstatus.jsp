@@ -9,8 +9,9 @@
 </head>
 <body>
 
-<div align="center" style="padding-top: 100px; ">
-<table border="2" style="background-color: black">
+<div align="center" style="padding-top:45px; ">
+<h1 style="font-family: initial;color: red;font-size: 25px;">Card details</h1>
+<table border="2">
 <form  action="/emp/reactive" method="post">
 <tr>
   <td>card number</td> 
@@ -40,14 +41,14 @@
 
 </table>
 
- <input type="submit" value="reactivate"/> 
+ <input type="submit" value="reactivate" style="background-color:green;border-radius:5px;"/> 
 </form>
- <a href="/emp/blockcard"><button>Deactivate</button></a>
+ <a href="/emp/blockcard"><button style="background-color:red;border-radius:5px;">Deactivate</button></a>
 </div>
 
 <%
 
-RequestDispatcher rd = request.getRequestDispatcher("emphome.jsp");
+RequestDispatcher rd = request.getRequestDispatcher("employeehome.jsp");
 rd.include(request, response);
 
 %>

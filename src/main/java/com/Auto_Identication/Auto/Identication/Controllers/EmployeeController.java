@@ -49,7 +49,7 @@ public String empLoginVerify(@ModelAttribute("bankemployeelogin") BankEmployeeLo
 		if(res==1)
 		{
 			
-			return "emphome";
+			return "employeehome";
 		}
 		else if(res==2)
 		{
@@ -187,6 +187,7 @@ public String empLoginVerify(@ModelAttribute("bankemployeelogin") BankEmployeeLo
 	{
 		List<LoanCustomer> list13=employeeservices.customerlist();
 		List<LoanCustomer> dth=new ArrayList<LoanCustomer>();
+		if(list13!=null) {
 		for (LoanCustomer d : list13)
 		{
 			if(d.getDues()>=12)
@@ -197,6 +198,11 @@ public String empLoginVerify(@ModelAttribute("bankemployeelogin") BankEmployeeLo
 		}
 		model.addAttribute("custlist",dth);
 		return "employeeworkforcustomer";
+		}
+		else {
+			model.addAttribute("message","No defaulters");
+			return "employeeworkforcustomer";
+		}
 	}
 	@GetMapping("/duelist")
 	public String duelist(Model model)
@@ -245,7 +251,7 @@ session.setAttribute("account", res);
 		if(lc==null)
 		{
 			model.addAttribute("message", "There is no customer");
-			return "emphome";
+			return "employeehome";
 		}
 		model.addAttribute("card",lc.getCard());
 		return "cardstatus";
@@ -287,12 +293,12 @@ session.setAttribute("account", res);
 			if(cardloan!=null)
 			{
 				model.addAttribute("message","card is decativated");
-				return "emphome";
+				return "employeehome";
 			}
 			else
 			{
 				model.addAttribute("message","card is not decativated");
-				return "emphome";
+				return "employeehome";
 			}
 		}
 		model.addAttribute("message","already  deactived");
@@ -307,7 +313,7 @@ session.setAttribute("account", res);
 		if(f==vf)
 		{
 			model.addAttribute("message",lc.getFine()+"already charges applied");
-			return "emphome";
+			return "employeehome";
 		}
 		else
 		{
@@ -316,12 +322,12 @@ session.setAttribute("account", res);
 			if(sl==null)
 			{
 				model.addAttribute("message","charges not applied");
-				return "emphome";
+				return "employeehome";
 			}
 			else
 			{
 				model.addAttribute("message","charges applied");
-				return "emphome";
+				return "employeehome";
 			}
 		}
 
@@ -331,7 +337,7 @@ session.setAttribute("account", res);
 	public String message(Model model)
 	{
 		model.addAttribute("message","message sent succesfully");
-		return "emphome";
+		return "employeehome";
 	}
 	@GetMapping("/pay")
 	public String payAmount(Model model)
@@ -351,12 +357,12 @@ session.setAttribute("account", res);
 	if(loan!=null)
 	{
 		model.addAttribute("message", amm+" is successfully paid");
-		return "emphome";
+		return "employeehome";
 	}
 	else
 	{
 		model.addAttribute("message", "something went wrong");
-		return "emphome";
+		return "employeehome";
 	}
 	
 	}
@@ -370,12 +376,12 @@ session.setAttribute("account", res);
 	if(lc1!=null)
 	{
 	    model.addAttribute("message",lc.getCustomerName()+" is now a validator");
-		return "emphome";
+		return "employeehome";
 	}
 	else
 	{
 		 model.addAttribute("message",lc.getCustomerName()+" is not updated as validator");
-			return "emphome";
+			return "employeehome";
 	}
 	}
 
@@ -388,12 +394,12 @@ session.setAttribute("account", res);
 	if(lc1!=null)
 	{
 	    model.addAttribute("message",lc.getCustomerName()+" is now a autowaver");
-		return "emphome";
+		return "employeehome";
 	}
 	else
 	{
 		 model.addAttribute("message",lc.getCustomerName()+" is not updated as autowaver");
-			return "emphome";
+			return "employeehome";
 	}
 	}
 	@GetMapping("/forgetUserId")
@@ -476,12 +482,12 @@ session.setAttribute("account", res);
 	if(lc1!=null)
 	{
 	    model.addAttribute("message",lc.getCustomerName()+" is now a defaulter");
-		return "emphome";
+		return "employeehome";
 	}
 	else
 	{
 		 model.addAttribute("message",lc.getCustomerName()+" is not updated as defaulter");
-			return "emphome";
+			return "employeehome";
 	}
 	}
 	

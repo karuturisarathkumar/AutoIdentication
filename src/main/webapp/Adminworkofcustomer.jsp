@@ -23,7 +23,7 @@
 </form>
 </div>
 <div align="center">
-<table border="2"  style="background-color: black;">
+<table border="2" style="margin-top:25px;">
  <tr>
 <th>AccountNumber</th>
 <th>Name</th>
@@ -54,7 +54,10 @@
            <td>${customer.fine}</td>
            <td>${customer.accuralStatus}</td>
            <td>${customer.borrowerRating}</td>
-           <td>${customer.status}<button><a href="/admin/setvalidate?id=${customer.accountNumber}" style="color: red;">Validate</a></button><button><a href="/admin/setautowaver?id=${customer.accountNumber}" style="color: red;">AutoWaver</a></button><button><a href="/admin/setdefaulter?id=${customer.accountNumber}" style="color: red;">defaulter</a></button></td>
+           <td><button><a href="/admin/setvalidate?id=${customer.accountNumber}" style="color: red;">Validate</a></button>
+           <button><a href="/admin/setautowaver?id=${customer.accountNumber}" style="color: red;">AutoWaver</a></button>
+           <button><a href="/admin/setdefaulter?id=${customer.accountNumber}" style="color: red;">defaulter</a></button>
+           </td>
            
 </c:forEach>
 
@@ -80,7 +83,7 @@
 </div>
 <%
 
-RequestDispatcher rd = request.getRequestDispatcher("Adminhome.jsp");
+RequestDispatcher rd = request.getRequestDispatcher("sampleadminhome.jsp");
 rd.include(request, response);
 
 %>

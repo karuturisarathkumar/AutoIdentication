@@ -5,11 +5,12 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<link rel="stylesheet" type="text/css" href="/menubar.css">
 <title>Insert title here</title>
 </head>
 <body>
 <div align="center">
-<table border="2"  style="background-color: black;">
+<table border="2"  style="margin-top:25px;">
  <tr>
 <th>userid</th>
 <th>firstname</th>
@@ -34,8 +35,11 @@
            <td>${employee.city}</td>
            <td>${employee.state}</td>
            <td>${employee.password}</td>
-           <td>${employee.status}<button><a href="/admin/activate?userid=${employee.userId}" style="color: red;">activate</a></button></td>
-           <%-- <td> <a href="/student/applycourse?couresid=${course.courseid}" style="color: yellow;">Take This Course</a> </td> --%>
+           <td>
+           <button class="button"><a href="/admin/activate?userid=${employee.userId}" style="color: red;">activate</a>
+           </button>
+           </td>
+           
 </c:forEach>
 
 </table>
@@ -43,7 +47,7 @@
 
 <%
 
-RequestDispatcher rd = request.getRequestDispatcher("Adminhome.jsp");
+RequestDispatcher rd = request.getRequestDispatcher("sampleadminhome.jsp");
 rd.include(request, response);
 
 %>

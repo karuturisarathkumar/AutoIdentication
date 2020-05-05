@@ -18,10 +18,7 @@
 <li><a href="/emp/"><i class="fa fa-user"></i>Bank Employee</a></li>
 </ul>
 </div>
-
 </head>
 <body>
-
-
 </body>
 </html>

@@ -8,12 +8,13 @@
 <title>Insert title here</title>
 </head>
 
-<body>
-<div align="center">
-<table border="2" style="background-color: black">
+<body >
+<div align="center" style="background-color:burlywood;height:600px;margin-top: -17px;">
+<h1 align="center" style="font-family:monospace;color:red;font-size:25px;">Defaulters List</h1>
+<table border="2">
 <c:forEach items="${custlist}" var="customer">
 <tr>
-     <td><a href="/emp/details?id=${customer.accountNumber}"  style="color: white;">${customer.accountNumber}</a></td>
+     <td><a href="/emp/details?id=${customer.accountNumber}"  style="color: black;">${customer.accountNumber}</a></td>
 
      <%-- <td><a href="/emp/duelist"  style="color: yellow;">${customer.customerName}-->Dues:${customer.dues}</a></td> --%>
     </tr>
@@ -23,7 +24,7 @@
 
 
 <%
-RequestDispatcher rd = request.getRequestDispatcher("emphome.jsp");
+RequestDispatcher rd = request.getRequestDispatcher("employeehome.jsp");
 rd.include(request, response);
 %>
 </body>

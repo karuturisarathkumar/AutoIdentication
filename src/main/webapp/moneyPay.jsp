@@ -15,7 +15,7 @@
 </div>
 
 <%
-RequestDispatcher rd = request.getRequestDispatcher("emphome.jsp");
+RequestDispatcher rd = request.getRequestDispatcher("employeehome.jsp");
 rd.include(request, response);
 %>
 </body>

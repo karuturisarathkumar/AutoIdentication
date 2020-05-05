@@ -9,13 +9,13 @@
 <body>
 <div align="center" style="padding-top: 80px; ">
 <form action="/emp/getCard" method="post">
-<input type="text" placeholder="search" style="padding: 20px;height: 15px;width: 250px;" name="number">
-<input type="submit" value="search" style="height: 18px;width: 50px;">
+<input type="text" placeholder="search" style="padding: 20px;height: 15px;width: 250px;border-color:green" name="number">
+<input type="submit" value="search" style="height:40px;width: 80px;border-radius: 10px;background-color: red;">
 </form>
 </div>
 <%
 
-RequestDispatcher rd = request.getRequestDispatcher("emphome.jsp");
+RequestDispatcher rd = request.getRequestDispatcher("employeehome.jsp");
 rd.include(request, response);
 
 %>
