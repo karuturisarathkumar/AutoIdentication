@@ -88,7 +88,7 @@ ul{
 {
 	display: inline-flex;
 	list-style: none;
-	color: black;
+	color: gray;
 }
 .menubar ul li
 {
@@ -100,6 +100,7 @@ ul{
 {
 	font-size: 20px;
 	text-align: center;
+	color: white;
 }
 .active, .menubar ul li:hover
 {
@@ -133,7 +134,7 @@ ul{
 {
 width: 150px;
 padding: 10px;
-border-bottom: 1px dotted white;
+border-bottom: 1px dotted black;
 background: transparent;
 border-radius: 0;
 text-align: left;	
@@ -144,7 +145,7 @@ text-align: left;
 }
 .menubar ul li:hover .sub-menu-1 ul li a:hover
 {
-	color: black;
+	color: blue;
 }
 
 
@@ -157,4 +158,20 @@ td,th
 	
 	color: white;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
  

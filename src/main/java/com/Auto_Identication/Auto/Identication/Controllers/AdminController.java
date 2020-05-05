@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.Auto_Identication.Auto.Identication.Dao.AdminDao;
 import com.Auto_Identication.Auto.Identication.Dao.EmployeeDao;
 import com.Auto_Identication.Auto.Identication.Dao.IssuesDao;
 import com.Auto_Identication.Auto.Identication.Dao.LoanCustomerDao;
@@ -41,6 +42,11 @@ public class AdminController {
 	private LoanCustomerDao loandao;
 	@Autowired
 	private IssuesDao issuesdao;
+	@Autowired
+	private EmployeeDao empdao;
+	
+	@Autowired
+	private AdminDao admindao;
 	
 	@GetMapping("/")
 	public String aLogin(Model model) {
@@ -48,14 +54,7 @@ public class AdminController {
 		model.addAttribute("adminlogin", adminlogin);
 		return "AdminLogin";
 	}
-	@GetMapping("/getlist")
-	public String getlist(Model model) {
-	//public List<Issues> getlist(){
-		//return issuesdao.findAll();
-		List<Issues> issues = adminservices.findAll();
-		model.addAttribute("issues", issues);
-		return "showIssues";
-	}
+	
 	@GetMapping("/issues")
 	public String issues(Model model) {
 		model.addAttribute("logissue", new Issues());
@@ -63,12 +62,56 @@ public class AdminController {
 		return "issues";
 	}
 	@PostMapping("/issue")
-	public String issue(@ModelAttribute("logissue") Issues il,Model model){
-
-		issuesdao.save(il);
-		model.addAttribute("issue", "Your issues were sent");
+	public String issue(@ModelAttribute("logissue") Issues il,Model model)
+	{
+       if(il.getRole().equals("employee"))
+       {
+    	  BankEmployee bk= empdao.findByUserId(il.getUserId());
+       if(bk!=null)
+       {
+		Issues iss=issuesdao.save(il);
+		if(iss!=null)
+		{
+		model.addAttribute("message", "Your issue is sent to the technical team");
 	
 		return  "home";
+	    }
+		else
+		{
+			model.addAttribute("message","something went wrong");
+			return "home";
+		}
+       }
+       else
+       {
+    	   model.addAttribute("message","you are not the employee");
+			return "home";
+       }
+       }
+       else
+       {
+    	   Admin ad=admindao.findByuserId(il.getUserId());
+    	   if(ad!=null)
+           {
+    		Issues iss=issuesdao.save(il);
+    		if(iss!=null)
+    		{
+    		model.addAttribute("message", "Your issue is sent to the technical team");
+    	
+    		return  "home";
+    	    }
+    		else
+    		{
+    			model.addAttribute("message","something went wrong");
+    			return "home";
+    		}
+           }
+    	   else
+           {
+        	   model.addAttribute("message","you are not the admin");
+    			return "home";
+           }
+       }
 		
 	}
 

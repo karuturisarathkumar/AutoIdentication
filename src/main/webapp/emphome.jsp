@@ -45,12 +45,10 @@ if(user==null)
 <li><a href="#">Mail id:-karuturisarathkumar@gmail.com</a></li>
 </ul>
 </div>
-<li ><a href="/admin/getlist"><i class="bi bi-envelope-fill"></i>Technical Issues</a></li>
-</li>
 </ul>
 </div>
 <div style="text-align: center;">
-<h1 style="color: green; font-size: 40px;">${message}</h1>
+<h1 style="color: blue; font-size: 40px;">${message}</h1>
 </div>
 </body>
 </html>

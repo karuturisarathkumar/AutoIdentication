@@ -12,7 +12,7 @@
 <body>
 
 <div class ="menubar" align="center">
-<h1 style="size: 20px; color: white;">Auto-Identification</h1>
+<h1 style="size: 20px; color: white;"><a href="/">Auto-Identification</a></h1>
 <ul>
 <li><a href="/admin/"><i class="fa fa-user-o"></i>AIP Admin</a></li>
 <li><a href="/emp/"><i class="fa fa-user"></i>Bank Employee</a></li>
@@ -22,8 +22,10 @@
 <div class="topright">
 <a href="/admin/issues"><i class="fa fa-wrench" aria-hidden="true" ></i>Issues</a>
 </div>
-</head>
 
+<div align="center" style="padding-top: 80px; ">
+<h1 style="color: green;font-size: 40px;">${message}</h1>
+</div>
 
 
 </body>

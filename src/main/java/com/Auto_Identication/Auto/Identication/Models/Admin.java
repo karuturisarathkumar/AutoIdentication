@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 @Entity
 @Table
 public class Admin 
@@ -25,7 +26,7 @@ private String lastName;
 private int age;
 	@Column
 private String gender;
-	@Column
+	@Column(unique = false)
 private String contactNumber;
 	@Column
 private String city;

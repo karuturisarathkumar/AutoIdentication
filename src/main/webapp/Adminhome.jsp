@@ -46,10 +46,10 @@ if(user==null)
 <div class="sub-menu-1">
 <ul>
 <li><a href="/admin/genRep">Over all report</a></li>
-<li><a href="/admin/autocustlist">no.of AutoDefaulter</a></li>
-<li><a href="/admin/manualcustlist">no.of ManualDefaulter</a></li>
-<li><a href="/admin/DefList">no.of Defalters</a></li>
-<li><a href="/admin/activationList">no.of Re_activations</a></li>
+<li><a href="/admin/autocustlist">AutoDefaulter</a></li>
+<li><a href="/admin/manualcustlist">ManualDefaulter</a></li>
+<li><a href="/admin/DefList">Defaulters</a></li>
+<li><a href="/admin/activationList">Re_activations</a></li>
 
 
 </ul>
@@ -64,8 +64,6 @@ if(user==null)
 <li><a href="#">Mail id:-karuturisarathkumar@gmail.com</a></li>
 </ul>
 </div>
-<li ><a href="/admin/getlist"><i class="bi bi-envelope-fill"></i>Technical Issues</a></li>
-</li>
 </ul>
 </div>
 

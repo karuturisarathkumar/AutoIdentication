@@ -1,6 +1,7 @@
 package com.Auto_Identication.Auto.Identication.Models;
 
 
+import javax.annotation.Generated;
 import javax.persistence.*;
 import javax.persistence.Id;
 
@@ -8,28 +9,33 @@ import javax.persistence.Id;
 @Table(name = "issues")
 public class Issues {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int cardNumber;
-	
+	@GeneratedValue(strategy =GenerationType.AUTO )
+	private int id;
 	@Column
-	private String issues;
+	private String userId;
+	@Column
+	private String role;
+	@Column
+	private String issue;
 	@Column
 	private String description;
-	public Issues() {
-		super();
+	public String getUserId() {
+		return userId;
 	}
-	
-	public int getCardNumber() {
-		return cardNumber;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
-	public void setCardNumber(int cardNumber) {
-		this.cardNumber = cardNumber;
+	public String getRole() {
+		return role;
 	}
-	public String getIssues() {
-		return issues;
+	public void setRole(String role) {
+		this.role = role;
 	}
-	public void setIssues(String issues) {
-		this.issues = issues;
+	public String getIssue() {
+		return issue;
+	}
+	public void setIssue(String issue) {
+		this.issue = issue;
 	}
 	public String getDescription() {
 		return description;
@@ -39,7 +45,12 @@ public class Issues {
 	}
 	@Override
 	public String toString() {
-		return "Issues [cardNumber=" + cardNumber + ", issues=" + issues + ", description=" + description + "]";
+		return "Issues [userId=" + userId + ", role=" + role + ", issue=" + issue + ", description=" + description
+				+ "]";
 	}
 
+
+
+	
+	
 }

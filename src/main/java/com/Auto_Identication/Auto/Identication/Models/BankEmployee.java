@@ -28,7 +28,7 @@ private String lastName;
 private int age;
 	@Column
 private String gender;
-	@Column
+	@Column(unique = false)
 private String contactNumber;
 	@Column
 private String city;
