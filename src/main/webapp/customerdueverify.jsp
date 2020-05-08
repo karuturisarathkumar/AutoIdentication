@@ -6,10 +6,16 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+<style type="text/css">
+</style>
 </head>
 <body>
-<div align="center" style="padding-top: 150px">
-<table border="2" style="background-color: black">
+
+
+
+<div align="center" style="padding-top:30px">
+ <h1 style="font-family: initial;color: red;font-size: 25px;">Customer details</h1>
+<table border="2">
 <tr>
   <td>Account number</td>  
   <td ><c:out value="${customer.accountNumber}"></c:out></td> 
@@ -36,10 +42,11 @@
  </tr>
    <tr>
   <td>status</td>  
-  <td><c:out value="${customer.status}"></c:out></td> 
-  <td ><a href="/emp/empsetvalidate?id=${customer.accountNumber}"><button style="width: 80px;">validate</button></a></td>
-   <td><a href="/emp/empsetwaver?id=${customer.accountNumber}"><button>Auto waver</button></a></td>
-   <td><a href="/emp/empsetdefault?id=${customer.accountNumber}"><button>Defaulter</button></a></td>
+  <td><c:out value="${customer.status}"></c:out></td>
+ 
+  <td><a href="/emp/empsetvalidate?id=${customer.accountNumber}"><button style="width:80px;padding:3px;background-color:green;border-radius:5px;">validate</button></a></td>
+   <td><a href="/emp/empsetwaver?id=${customer.accountNumber}"><button style="width:80px;padding:3px;background-color:red;border-radius:5px;">AutoWaver</button></a></td>
+   <td><a href="/emp/empsetdefault?id=${customer.accountNumber}"><button style="width:80px;padding:3px;background-color:green;border-radius:5px;">Defaulter</button></a></td>
  </tr>
   <tr>
   <td>lastpaid on</td>  
@@ -59,25 +66,30 @@
  </tr>
   <tr>
   <td>card number</td>  
-  <td><c:out value="${card.cardNumber}"></c:out></td> 
+  <td>${card.cardNumber}</td> 
  </tr>
+ 
   <tr>
   <td>card status</td>  
-  <td><c:out value="${card.cardStatus}"></c:out></td> 
-  <td><a href="/emp/cards"><button>Re-activate</button></a></td>
-   <td><a href="/emp/cards"><button>Deactivate</button></a></td>
+  <td><c:out value="${card.cardStatus}"></c:out>
+ 
+<td><a href="/emp/cards"><button style="width:80px;padding:3px;background-color:green;border-radius:5px;">Re-activate</button></a></td>
+   <td><a href="/emp/cards"><button style="width:80px;padding:3px;background-color:red;border-radius:5px;">Deactivate</button></a></td>
+  </td> 
+ 
  </tr>
 </table>
-<a href="/emp/alert"><button>alert</button></a>
-<a href="/emp/charges?id=${customer.accountNumber}" ><button>charges</button></a>
-<a href="/emp/pay?id=${customer.accountNumber}" ><button>Pay</button></a>
+
+<a href="/emp/alert"><button style="width:80px;padding:3px;background-color:orange;border-radius:5px;">alert</button></a>
+<a href="/emp/charges?id=${customer.accountNumber}" ><button style="width:80px;padding:3px;background-color:red;border-radius:5px;">charges</button></a>
+<a href="/emp/pay?id=${customer.accountNumber}" ><button style="width:80px;padding:3px;background-color:green;border-radius:5px;">Pay</button></a>
+
 </div>
 
-<%
-
-RequestDispatcher rd = request.getRequestDispatcher("emphome.jsp");
+<% 
+RequestDispatcher rd = request.getRequestDispatcher("employeehome.jsp");
 rd.include(request, response);
 
-%>
+%> 
 </body>
 </html>

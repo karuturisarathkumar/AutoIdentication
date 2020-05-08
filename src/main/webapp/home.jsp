@@ -23,9 +23,11 @@
 <a href="/admin/issues"><i class="fa fa-wrench" aria-hidden="true" ></i>Issues</a>
 </div>
 
+
 <div align="center" style="padding-top: 80px; ">
-<h1 style="color: green;font-size: 40px;">${message}</h1>
+<h1 style="color: orange;font-size: 40px; font-style:italic;">${message}</h1>
 </div>
+
 
 
 </body>

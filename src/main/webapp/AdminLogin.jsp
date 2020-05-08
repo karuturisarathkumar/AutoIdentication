@@ -39,7 +39,7 @@ ${message }
 <tr>
 <td>UserId:</td>
 <td>
-<form:input path="userId" id="uId" class="form-control" onfocus="validateuid()"/>
+<form:input path="userId"  id="uId" class="form-control" onfocus="validateuid()"/>
 <br>
 <a href="forgetUId" style="font-size:14px;">ForgotUserid</a>
 </td>

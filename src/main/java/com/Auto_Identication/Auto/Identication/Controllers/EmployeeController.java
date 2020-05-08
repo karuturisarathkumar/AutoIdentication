@@ -1,10 +1,12 @@
 package com.Auto_Identication.Auto.Identication.Controllers;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.naming.java.javaURLContextFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -50,7 +52,7 @@ public String empLoginVerify(@ModelAttribute("bankemployeelogin") BankEmployeeLo
 		if(res==1)
 		{
 			
-			return "emphome";
+			return "employeehome";
 		}
 		else if(res==2)
 		{
@@ -119,9 +121,9 @@ public String empLoginVerify(@ModelAttribute("bankemployeelogin") BankEmployeeLo
 	@GetMapping("/homeemp")
 	public String empHome(Model model)
 	{
-		model.addAttribute("message","* Please logout at the end of the day *");
+		
 	    
-		return "emphome";
+		return "employeehome";
 	}
 	
 	@GetMapping("/details")
@@ -138,6 +140,8 @@ public String empLoginVerify(@ModelAttribute("bankemployeelogin") BankEmployeeLo
 	{
 		List<LoanCustomer> list3=employeeservices.customerlist();
 		List<LoanCustomer> dt=new ArrayList<LoanCustomer>();
+		if(list3!=null)
+		{
 		for (LoanCustomer dues : list3)
 		{
 			if(dues.getDues()<3)
@@ -149,12 +153,20 @@ public String empLoginVerify(@ModelAttribute("bankemployeelogin") BankEmployeeLo
 		System.out.println(dt);
 		model.addAttribute("custlist",dt);
 		return "employeeworkforcustomer";
+		}
+		else
+		{
+			model.addAttribute("message", "no one is their");
+			return "employeehome";
+		}
 	}
 	@GetMapping("/duelesssix")
 	public String duelistlesssix(Model model)
 	{
 		List<LoanCustomer> list6=employeeservices.customerlist();
 		List<LoanCustomer> ds=new ArrayList<LoanCustomer>();
+		if(list6!=null)
+		{
 		for (LoanCustomer due : list6)
 		{
 			if(due.getDues()>=3 && due.getDues()<6 )
@@ -165,6 +177,12 @@ public String empLoginVerify(@ModelAttribute("bankemployeelogin") BankEmployeeLo
 		}
 		model.addAttribute("custlist",ds);
 		return "employeeworkforcustomer";
+		}
+		else
+		{
+			model.addAttribute("message","no one is their");
+			return "employeehome";
+		}
 	}
 	@GetMapping("/duelesstwelve")
 	public String duelistlesstwelve(Model model)
@@ -187,6 +205,7 @@ public String empLoginVerify(@ModelAttribute("bankemployeelogin") BankEmployeeLo
 	{
 		List<LoanCustomer> list13=employeeservices.customerlist();
 		List<LoanCustomer> dth=new ArrayList<LoanCustomer>();
+		if(list13!=null) {
 		for (LoanCustomer d : list13)
 		{
 			if(d.getDues()>=12)
@@ -197,6 +216,11 @@ public String empLoginVerify(@ModelAttribute("bankemployeelogin") BankEmployeeLo
 		}
 		model.addAttribute("custlist",dth);
 		return "employeeworkforcustomer";
+		}
+		else {
+			model.addAttribute("message","No defaulters");
+			return "employeeworkforcustomer";
+		}
 	}
 	@GetMapping("/duelist")
 	public String duelist(Model model)
@@ -245,7 +269,7 @@ session.setAttribute("account", res);
 		if(lc==null)
 		{
 			model.addAttribute("message", "There is no customer");
-			return "emphome";
+			return "employeehome";
 		}
 		model.addAttribute("card",lc.getCard());
 		return "cardstatus";
@@ -261,50 +285,54 @@ session.setAttribute("account", res);
 	@PostMapping("/reactive")
 	public String reActivate(@RequestParam("reason") String rs,Model model,HttpSession session)
 	{
+		Date d=new Date();
 		int res=(int) session.getAttribute("account");
 		LoanCustomer lc=loandao.findByaccountNumber(res);
 		if(lc.getCard().getCardStatus().equals("deactive"))
 		{
 			lc.getCard().setCardStatus("Re-active");
+			lc.getCard().setExpDate(d);
 			lc.getCard().setReActivationReason(rs);
 			LoanCustomer cardloan=loandao.save(lc);
 			if(cardloan!=null)
 			{
-				model.addAttribute("message","card is re-activated");
-				return "emphome";
+				model.addAttribute("message",lc.getCustomerName()+  "card is re-activated");
+				return "employeehome";
 			}
 			else
 			{
-				model.addAttribute("message","card is not re-cativated");
-				return "emphome";
+				model.addAttribute("message",lc.getCustomerName()+  "card is not re-cativated");
+				return "employeehome";
 			}
 		}
-		model.addAttribute("message","already in re-actived");
-		return "emphome";
+		model.addAttribute("message",lc.getCustomerName()+  "card isalready in re-actived");
+		return "employeehome";
 	}
 	@GetMapping("/blockcard")
 	public String deActivate(Model model,HttpSession session)
 	{
+		Date d=new Date();
 		int res=(int) session.getAttribute("account");
 		LoanCustomer lc=loandao.findByaccountNumber(res);
 		if(lc.getCard().getCardStatus().equals("active"))
 		{
 			lc.getCard().setCardStatus("deactive");
+			lc.getCard().setExpDate(d);
 			lc.getCard().setReActivationReason("failed to pay");
 			LoanCustomer cardloan=loandao.save(lc);
 			if(cardloan!=null)
 			{
-				model.addAttribute("message","card is decativated");
-				return "emphome";
+				model.addAttribute("message",lc.getCustomerName()+  "card is decativated");
+				return "employeehome";
 			}
 			else
 			{
-				model.addAttribute("message","card is not decativated");
-				return "emphome";
+				model.addAttribute("message",lc.getCustomerName()+  "card is not decativated");
+				return "employeehome";
 			}
 		}
-		model.addAttribute("message","already  deactived");
-		return "emphome";
+		model.addAttribute("message",lc.getCustomerName()+ "card is already  deactived");
+		return "employeehome";
 	}
 	@GetMapping("/charges")
 	public String applyCharges(@RequestParam("id") int res,Model model)
@@ -315,7 +343,7 @@ session.setAttribute("account", res);
 		if(f==vf)
 		{
 			model.addAttribute("message",lc.getFine()+"already charges applied");
-			return "emphome";
+			return "employeehome";
 		}
 		else
 		{
@@ -324,12 +352,12 @@ session.setAttribute("account", res);
 			if(sl==null)
 			{
 				model.addAttribute("message","charges not applied");
-				return "emphome";
+				return "employeehome";
 			}
 			else
 			{
 				model.addAttribute("message","charges applied");
-				return "emphome";
+				return "employeehome";
 			}
 		}
 
@@ -339,7 +367,7 @@ session.setAttribute("account", res);
 	public String message(Model model)
 	{
 		model.addAttribute("message","message sent succesfully");
-		return "emphome";
+		return "employeehome";
 	}
 	@GetMapping("/pay")
 	public String payAmount(Model model)
@@ -359,12 +387,12 @@ session.setAttribute("account", res);
 	if(loan!=null)
 	{
 		model.addAttribute("message", amm+" is successfully paid");
-		return "emphome";
+		return "employeehome";
 	}
 	else
 	{
 		model.addAttribute("message", "something went wrong");
-		return "emphome";
+		return "employeehome";
 	}
 	
 	}
@@ -372,6 +400,8 @@ session.setAttribute("account", res);
 	@GetMapping("/empsetvalidate")
 	public String statusValidate(@RequestParam("id") int res,Model model)
 	{
+		System.out.println(res);
+		
 	LoanCustomer lc=loandao.findByaccountNumber(res);
 	lc.setStatus("validate");
 	lc.setAccuralStatus(9);
@@ -380,12 +410,12 @@ session.setAttribute("account", res);
 	if(lc1!=null)
 	{
 	    model.addAttribute("message",lc.getCustomerName()+" is now a validator");
-		return "emphome";
+		return "employeehome";
 	}
 	else
 	{
 		 model.addAttribute("message",lc.getCustomerName()+" is not updated as validator");
-			return "emphome";
+			return "employeehome";
 	}
 	}
 
@@ -400,12 +430,12 @@ session.setAttribute("account", res);
 	if(lc1!=null)
 	{
 	    model.addAttribute("message",lc.getCustomerName()+" is now a autowaver");
-		return "emphome";
+		return "employeehome";
 	}
 	else
 	{
 		 model.addAttribute("message",lc.getCustomerName()+" is not updated as autowaver");
-			return "emphome";
+			return "employeehome";
 	}
 	}
 	@GetMapping("/forgetUserId")
@@ -499,12 +529,12 @@ session.setAttribute("account", res);
 	if(lc1!=null)
 	{
 	    model.addAttribute("message",lc.getCustomerName()+" is now a defaulter");
-		return "emphome";
+		return "employeehome";
 	}
 	else
 	{
 		 model.addAttribute("message",lc.getCustomerName()+" is not updated as defaulter");
-			return "emphome";
+			return "employeehome";
 	}
 	}
 	
@@ -543,7 +573,33 @@ session.setAttribute("account", res);
 				return "ResetPassword";
 			}		
 	}
-}
+	
+	@PostMapping("/getAccountNumber")
+	public String searchAccountNumber(@RequestParam("num") int number,Model model)
+	{
+		LoanCustomer lc=loandao.findByaccountNumber(number);
+		if(lc!=null)
+		{
+			if(lc.getStatus().equals("defaulter"))
+			{
+		model.addAttribute("cust", lc);
+		return  "empsearch";
+			}
+			else
+			{
+				model.addAttribute("message",lc.getCustomerName()+" is not a defaulter");
+				return "employeehome";
+			}
+		}
+		else
+		{
+			model.addAttribute("message","account number not found");
+			return "employeehome";
+		}
+		}
+	
+	}
+
 	
 	
 

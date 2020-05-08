@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -122,7 +123,7 @@ public class AdminController {
 		session.setAttribute("userid", al.getUserId());
 		int res = adminservices.getAdmin(al);
 		if (res == 1) {
-			return "Adminhome";
+			return "sampleadminhome";
 		} else if (res == 2) {
 			model.addAttribute("message", "your are not yet registered");
 			return "AdminLogin";
@@ -176,14 +177,16 @@ public String adminVerifyRegistration(@ModelAttribute("admin") Admin ad,@ModelAt
 
 	@GetMapping("/homeadmin")
 	public String adminHome(Model model) {
-		model.addAttribute("message", "* Please logout at the end of the day *");
-		return "Adminhome";
+		
+		return "sampleadminhome";
 	}
 
 	@GetMapping("/getemplist")
 	public String getAllEmployees(Model model) {
 		List<BankEmployee> employeelist = adminservices.emplist();
 		List<BankEmployee> bankemployeelist = new ArrayList<BankEmployee>();
+		if(employeelist!=null)
+		{
 		for (BankEmployee be : employeelist) {
 			if (be.getStatus().equals("deactivate")) {
 				bankemployeelist.add(be);
@@ -191,6 +194,12 @@ public String adminVerifyRegistration(@ModelAttribute("admin") Admin ad,@ModelAt
 		}
 		model.addAttribute("employeelist", bankemployeelist);
 		return "Adminwork";
+		}
+		else
+		{
+			model.addAttribute("message","no employee");
+			return "sampleadminhome";
+		}
 	}
 
 	@GetMapping("/activate")
@@ -201,10 +210,10 @@ public String adminVerifyRegistration(@ModelAttribute("admin") Admin ad,@ModelAt
 		String status = be.getStatus();
 		if (be != null && status.equals("activate")) {
 			model.addAttribute("message", user + "sucesfully activate");
-			return "Adminhome";
+			return "sampleadminhome";
 		} else {
 			model.addAttribute("message", user + "not activated");
-			return "Adminhome";
+			return "sampleadminhome";
 		}
 	}
 
@@ -321,39 +330,45 @@ public String adminVerifyRegistration(@ModelAttribute("admin") Admin ad,@ModelAt
 	}
 
 	@GetMapping("/verifycard")
-	public String verifyActivationCards(@RequestParam("id") int res, Model model) {
+	public String verifyActivationCards(@RequestParam("id") int res, Model model) 
+	{
+		Date d=new Date();
 		LoanCustomer lc = loandao.findByaccountNumber(res);
 		if (lc.getCard() != null) {
 			lc.getCard().setCardStatus("active");
+			lc.getCard().setExpDate(d);
 			LoanCustomer loan = loandao.save(lc);
 			if (loan != null) {
-				model.addAttribute("message", lc.getCustomerName() + "card activated successfully");
-				return "Adminhome";
+				model.addAttribute("message", lc.getCustomerName() + "card activated successfully and message is sent to customer");
+				return "sampleadminhome";
 			} else {
 				model.addAttribute("message", lc.getCustomerName() + "card not activated");
-				return "Adminhome";
+				return "sampleadminhome";
 			}
 		}
 		model.addAttribute("message", lc.getCustomerName() + "card doesnot exits");
-		return "Adminhome";
+		return "sampledminhome";
 	}
 
 	@GetMapping("/decCard")
-	public String deactivateCard(@RequestParam("id") int res, Model model) {
+	public String deactivateCard(@RequestParam("id") int res, Model model) 
+	{
+		Date d=new Date();
 		LoanCustomer lc = loandao.findByaccountNumber(res);
 		if (lc.getCard() != null) {
 			lc.getCard().setCardStatus("deactive");
+			lc.getCard().setExpDate(d);
 			LoanCustomer loan = loandao.save(lc);
 			if (loan != null) {
 				model.addAttribute("message", lc.getCustomerName() + "card deactivated successfully");
-				return "Adminhome";
+				return "sampleadminhome";
 			} else {
 				model.addAttribute("message", lc.getCustomerName() + "card not deactivated");
-				return "Adminhome";
+				return "sampleadminhome";
 			}
 		}
 		model.addAttribute("message", lc.getCustomerName() + "card doesnot exits");
-		return "Adminhome";
+		return "sampledminhome";
 	}
 
 	@GetMapping("/genRep")
@@ -603,12 +618,12 @@ public String adminVerifyRegistration(@ModelAttribute("admin") Admin ad,@ModelAt
 	if(lc1!=null)
 	{
 	    model.addAttribute("message",lc.getCustomerName()+" is now a validator");
-		return "Adminhome";
+		return "sampleadminhome";
 	}
 	else
 	{
 		 model.addAttribute("message",lc.getCustomerName()+" is not updated as validator");
-			return "Adminhome";
+			return "sampleadminhome";
 	}
 	}
 
@@ -723,12 +738,12 @@ LoanCustomer lc1=loandao.save(lc);
 if(lc1!=null)
 {
     model.addAttribute("message",lc.getCustomerName()+" is now a autowaver");
-	return "Adminhome";
+	return "sampleadminhome";
 }
 else
 {
 	 model.addAttribute("message",lc.getCustomerName()+" is not updated as autowaver");
-		return "Adminhome";
+		return "sampleadminhome";
 }
 }
 
@@ -753,12 +768,12 @@ LoanCustomer lc1=loandao.save(lc);
 if(lc1!=null)
 {
     model.addAttribute("message",lc.getCustomerName()+" is now a defaulter");
-	return "Adminhome";
+	return "sampleadminhome";
 }
 else
 {
 	 model.addAttribute("message",lc.getCustomerName()+" is not updated as defaulter");
-		return "Adminhome";
+		return "sampleadminhome";
 }
 }
 
@@ -769,7 +784,7 @@ public String sendMessage(@RequestParam("id") int res,Model model)
 LoanCustomer lc=loandao.findByaccountNumber(res);
 
 	 model.addAttribute("message","message was sent to " +lc.getEmail());
-		return "Adminhome";
+		return "sampleadminhome";
 
 }
 
@@ -777,5 +792,22 @@ LoanCustomer lc=loandao.findByaccountNumber(res);
 	public String logOut() {
 		return "home";
 	}
+@PostMapping("/getAccount")
+	public String searchAccountNumber(@RequestParam("num") int number,Model model)
+	{
+		LoanCustomer lc=loandao.findByaccountNumber(number);
+		if(lc!=null)
+		{
+		model.addAttribute("cust", lc);
+		return  "AdminSearch";
+		}
+		else
+		{
+			model.addAttribute("message","account number not found");
+			return "sampleadminhome";
+		}
+		}
+	}
+	
+	
 
-}

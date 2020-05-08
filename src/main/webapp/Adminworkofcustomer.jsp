@@ -8,6 +8,14 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+<div align="center" style="padding-top: 20px; ">
+<form action="/admin/getAccount" method="post">
+<input type="text" placeholder="Account Number" style="padding: 10px;height: 15px;width: 200px;border-radius: 10px;border-color:green" name="num">
+<input type="submit" value="search" style="height:20px;width: 50px;border-radius: 10px;background-color: blue;">
+</form>
+</div>
+
 <div align="center" style="padding-top: 60px; ">
 <form action="/admin/sort" method="post">
 <select name="number" style="height: 40px" >
@@ -23,7 +31,7 @@
 </form>
 </div>
 <div align="center">
-<table border="2"  style="background-color: black;">
+<table border="2" style="margin-top:25px;">
  <tr>
 <th>AccountNumber</th>
 <th>Name</th>
@@ -54,8 +62,11 @@
            <td>${customer.fine}</td>
            <td>${customer.accuralStatus}</td>
            <td>${customer.borrowerRating}</td>
-           <td>${customer.status}<button><a href="/admin/setvalidate?id=${customer.accountNumber}" style="color: red;">Validate</a></button><button><a href="/admin/setautowaver?id=${customer.accountNumber}" style="color: red;">AutoWaver</a></button><button><a href="/admin/setdefaulter?id=${customer.accountNumber}" style="color: red;">defaulter</a></button></td>
-           
+    <td>${customer.status}</td>       <td><button><a href="/admin/setvalidate?id=${customer.accountNumber}" style="color: red;">Validate</a></button>
+           <button><a href="/admin/setautowaver?id=${customer.accountNumber}" style="color: red;">AutoWaver</a></button>
+           <button><a href="/admin/setdefaulter?id=${customer.accountNumber}" style="color: red;">defaulter</a></button>
+           </td>
+           </tr>
 </c:forEach>
 
 <c:forEach items="${custList}" var="customer">
@@ -75,12 +86,17 @@
            <td>${customer.borrowerRating}</td>
            <td>${customer.status}</td>
            <td><button><a href="/admin/sendalert?id=${customer.accountNumber}" style="color: red;">send alert</a></button></td>
+           </tr>
 </c:forEach>
+
+
 </table>
 </div>
+
+
 <%
 
-RequestDispatcher rd = request.getRequestDispatcher("Adminhome.jsp");
+RequestDispatcher rd = request.getRequestDispatcher("sampleadminhome.jsp");
 rd.include(request, response);
 
 %>

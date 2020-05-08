@@ -6,12 +6,36 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+<script type="text/javascript">
+
+function disButton()
+{
+	var s="${card.cardStatus}";
+	if(s=="Re-active")
+		{
+	document. getElementById("btn1"). disabled = true;
+	document. getElementById("btn2"). disabled = true;
+		}
+	if(s=="deactive")
+	{
+document. getElementById("btn2"). disabled = true;
+	}
+	if(s=="active")
+	{
+document. getElementById("btn1"). disabled = true;
+	}
+}
+
+</script>
 </head>
 <body>
 
-<div align="center" style="padding-top: 100px; ">
-<table border="2" style="background-color: black">
-<form  action="/emp/reactive" method="post">
+
+
+<div align="center" style="padding-top:45px; ">
+<h1 style="font-family: initial;color: red;font-size: 25px;">Card details</h1>
+<form  action="/emp/reactive" method="post" onmouseover="return disButton()">
+<table border="2">
 <tr>
   <td>card number</td> 
   <td><c:out value="${card.cardNumber}"></c:out></td> 
@@ -40,14 +64,15 @@
 
 </table>
 
- <input type="submit" value="reactivate"/> 
+ <input type="submit" value="reactivate" id="btn1" style="background-color:green;border-radius:5px;"/> 
+  <a href="/emp/blockcard"><button style="background-color:red;border-radius:5px;" id="btn2">Deactivate</button></a>
 </form>
- <a href="/emp/blockcard"><button>Deactivate</button></a>
+
 </div>
 
 <%
 
-RequestDispatcher rd = request.getRequestDispatcher("emphome.jsp");
+RequestDispatcher rd = request.getRequestDispatcher("employeehome.jsp");
 rd.include(request, response);
 
 %>
