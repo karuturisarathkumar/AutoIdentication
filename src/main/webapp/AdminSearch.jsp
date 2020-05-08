@@ -58,5 +58,11 @@
 </table>
 </div>
 
+<% 
+RequestDispatcher rd = request.getRequestDispatcher("sampleadminhome.jsp");
+rd.include(request, response);
+
+%>
+
 </body>
 </html>

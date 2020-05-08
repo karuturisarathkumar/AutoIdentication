@@ -27,5 +27,10 @@
 </tr>
 </table>
 </div>
+<% 
+RequestDispatcher rd = request.getRequestDispatcher("employeehome.jsp");
+rd.include(request, response);
+
+%>
 </body>
 </html>

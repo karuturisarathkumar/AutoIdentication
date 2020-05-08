@@ -206,7 +206,7 @@ function Adminvalidation(){
 </form:form>
 Already Admin?<a href="/admin/" style="color:yellow;">Login</a>
 </div>
-<a href="/">Home</a>
+<a href="/" style="color:black;">Home</a>
 </div>
 <script type="text/javascript">
 function validateFirstname(){

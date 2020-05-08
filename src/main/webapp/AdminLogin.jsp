@@ -58,7 +58,7 @@ ${message }
 </form:form>
 New Admin?<a href="/admin/regadmin" style="color:yellow;"> SignUp</a>
 </div>
-<a href="/">Home</a>
+<a href="/"  style="color:black;">Home</a>
 </div>
 <script type="text/javascript">
 function validateuid(){

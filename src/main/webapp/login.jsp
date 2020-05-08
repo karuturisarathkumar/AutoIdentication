@@ -40,7 +40,7 @@ ${message }
 <tr>
 <td style="color: white">User Id</td>
 <td>
-<form:input path="userId" id="UId" class="form-control" onfocus="validateuid()"/>
+<form:input path="userId" id="UId" class="form-control" onfocus="validateuid()" />
 <br>
 <a href="forgetUserId" style="font-size:14px;">ForgotUserid</a>
 <form:errors path="userId" id="UId" cssClass="errors"></form:errors>
@@ -53,7 +53,6 @@ ${message }
 <form:password path="password" id="Pwd" class="form-control" onfocus="validatepwd()"/>
 <br>
 <form:errors path="password" cssClass="errors"></form:errors>
-<a href="/emp/forgot" style="font-size: 13px;">forgot password?</a>
 <a href="forgetpassword" style="font-size:14px;">ForgotPassword</a>
 <form:errors path="password" id="Pwd" cssClass="errors"></form:errors>
 <br>
@@ -64,9 +63,9 @@ ${message }
 </tr>
 </table>
 </form:form>
-New Bank Employee?<a href="/emp/register" style="color:white;">Registration</a>
+New Bank Employee?<a href="/emp/register" style="color:yellow;">Registration</a>
 </div>
-<a href="/" style="color:white;">Home Page</a>
+<a href="/" style="color:black;">Home Page</a>
 </div>
 <script type="text/javascript">
 function validateuid(){

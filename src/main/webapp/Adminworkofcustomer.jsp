@@ -70,6 +70,7 @@
 </c:forEach>
 
 <c:forEach items="${custList}" var="customer">
+<jsp:useBean id="date" class="java.util.Date"/>
 
  <tr>
       <td>${customer.accountNumber}</td>
