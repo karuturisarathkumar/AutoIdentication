@@ -10,6 +10,18 @@
 </head>
 <body>
 
+<%
+String user =(String) session.getAttribute("userid");
+if(user==null)
+{
+	response.sendRedirect("/admin/");
+}
+%>
+<div class="maindiv">
+<span style="font-size:30px;cursor:pointer;color:white; right: 0;" onclick="openNav()" >&#9776;</span>
+<h1 style="text-align: center;color: white;font-size:20px;margin-top:-23px;"> Welcome <span style="color:white;"><%=user.toUpperCase() %></span></h1>
+</div>
+
 
 <div id="mySidenav" class="sidenav">
 <a href="javascript:void(0)" class="closebtn" style="margin-top:-54px;" onclick="closeNav()">&times;</a>  
@@ -53,20 +65,11 @@
 
 
 
-<div align="center"   style="position:fixed; right:0; left:0; bottom: 5px;padding-bottom: 350px;">
+
+<div align="center"   style="position:absolute; right:0; left:0; bottom: 250px;padding-bottom:50px;">
 <h1 style="color: blue;font-size: 30px;">${message}</h1>
 </div>
-<%
-String user =(String) session.getAttribute("userid");
-if(user==null)
-{
-	response.sendRedirect("/admin/");
-}
-%>
-<div class="maindiv">
-<span style="font-size:30px;cursor:pointer;color:white;" onclick="openNav()">&#9776;</span>
-<h1 style="text-align: center;color: white;font-size:20px;margin-top:-23px;"> Welcome <span style="color:white;"><%=user.toUpperCase() %></span></h1>
-</div>
+
 
 
 <script>

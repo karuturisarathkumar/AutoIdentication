@@ -44,9 +44,42 @@
   <td>status</td>  
   <td><c:out value="${customer.status}"></c:out></td>
  
-  <td><a href="/emp/empsetvalidate?id=${customer.accountNumber}"><button style="width:80px;padding:3px;background-color:green;border-radius:5px;">validate</button></a></td>
-   <td><a href="/emp/empsetwaver?id=${customer.accountNumber}"><button style="width:80px;padding:3px;background-color:red;border-radius:5px;">AutoWaver</button></a></td>
-   <td><a href="/emp/empsetdefault?id=${customer.accountNumber}"><button style="width:80px;padding:3px;background-color:green;border-radius:5px;">Defaulter</button></a></td>
+ 
+    
+   <c:if test="${customer.status == 'validate'}">
+   <td>
+      <a href="/emp/empsetwaver?id=${customer.accountNumber}" style="color: red;" enabled="enabled"><button style="width:80px;padding:3px;background-color:blue;border-radius:5px;">AutoWaver</button></a>
+   </td>
+   <td>
+    <a href="/emp/empsetdefault?id=${customer.accountNumber}" style="color: red;" enabled="enabled"><button style="width:80px;padding:3px;background-color:red;border-radius:5px;">defaulter</button></a>
+    </td>
+     </c:if>
+     
+     
+     <c:if test="${customer.status == 'autowaver'}">
+     <td>
+    <a href="/emp/empsetvalidate?id=${customer.accountNumber}" enabled="enabled" style="color: red;"><button style="width:80px;padding:3px;background-color:green;border-radius:5px;">Validate</button></a>
+    </td>
+    <td>
+    <a href="/emp/empsetdefault?id=${customer.accountNumber}" style="color: red;" enabled="enabled"><button style="width:80px;padding:3px;background-color:red;border-radius:5px;">defaulter</button></a>
+     </td>
+     </c:if>
+     
+      <c:if test="${customer.status == 'defaulter'}">
+     <td>
+       <a href="/emp/empsetwaver?id=${customer.accountNumber}" style="color: red;" enabled="enabled"><button style="width:80px;padding:3px;background-color:blue;border-radius:5px;">AutoWaver</button></a>
+          
+       </td>
+       <td>
+    <a href="/emp/empsetvalidate?id=${customer.accountNumber}" enabled="enabled" style="color: red;"><button style="width:80px;padding:3px;background-color:green;border-radius:5px;">Validate</button></a>
+   </td>
+     </c:if> 
+     
+ 
+ 
+ 
+ 
+ 
  </tr>
   <tr>
   <td>lastpaid on</td>  

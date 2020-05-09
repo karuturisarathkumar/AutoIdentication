@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +10,7 @@
 <body>
 
 
-<div align="center" style="padding-top: 15px; ">
+<div align="center" style="padding-top: 60px; ">
 <form action="#" method="post">
 <input type="text" placeholder="Account Number" style="padding: 10px;height: 15px;width: 200px;border-radius: 10px;border-color:green" name="num">
 <input type="submit" value="search" style="height:20px;width: 50px;border-radius: 10px;background-color: blue;">
@@ -50,10 +51,30 @@
            <td>${cust.accuralStatus}</td>
            <td>${cust.borrowerRating}</td>
     <td>${cust.status}</td>      
-     <td><button><a href="/admin/setvalidate?id=${cust.accountNumber}" style="color: red;">Validate</a></button>
-           <button><a href="/admin/setautowaver?id=${cust.accountNumber}" style="color: red;">AutoWaver</a></button>
-           <button><a href="/admin/setdefaulter?id=${cust.accountNumber}" style="color: red;">defaulter</a></button>
-           </td>
+     
+<td>  
+   <c:if test="${cust.status == 'validate'}">
+      <a href="/admin/setautowaver?id=${cust.accountNumber}" style="color: red;" enabled="enabled"><button style="background-color:blue;border-radius:5px;">AutoWaver</button></a>
+   
+    <a href="/admin/setdefaulter?id=${cust.accountNumber}" style="color: red;" enabled="enabled"><button style="background-color:red;border-radius:5px;">defaulter</button></a>
+     </c:if>
+     
+     
+     <c:if test="${cust.status == 'autowaver'}">
+     
+    <a href="/admin/setvalidate?id=${cust.accountNumber}" enabled="enabled" style="color: red;"><button style="background-color:green;border-radius:5px;">Validate</button></a>
+    <a href="/admin/setdefaulter?id=${cust.accountNumber}" style="color: red;" enabled="enabled"><button style="background-color:red;border-radius:5px;">defaulter</button></a>
+     </c:if>
+     
+      <c:if test="${cust.status == 'defaulter'}">
+     
+       <a href="/admin/setautowaver?id=${cust.accountNumber}" style="color: red;" enabled="enabled"><button style="background-color:blue;border-radius:5px;">AutoWaver</button></a>
+    <a href="/admin/setvalidate?id=${cust.accountNumber}" enabled="enabled" style="color: red;"><button style="background-color:green;border-radius:5px;">Validate</button></a>
+   
+     </c:if> 
+     </td>
+
+
         </tr>   
 </table>
 </div>
