@@ -296,7 +296,7 @@ session.setAttribute("account", res);
 			LoanCustomer cardloan=loandao.save(lc);
 			if(cardloan!=null)
 			{
-				model.addAttribute("message",lc.getCustomerName()+  "card is re-activated");
+				model.addAttribute("message",lc.getCustomerName()+  "card is re-activated and message was sent to " +lc.getCustomerName());
 				return "employeehome";
 			}
 			else
@@ -308,8 +308,29 @@ session.setAttribute("account", res);
 		model.addAttribute("message",lc.getCustomerName()+  "card isalready in re-actived");
 		return "employeehome";
 	}
-	@GetMapping("/blockcard")
-	public String deActivate(Model model,HttpSession session)
+	
+	@GetMapping("/setDec")
+	public String goToDeactive(Model model,HttpSession session)
+	{
+		int res=(int) session.getAttribute("account");
+		LoanCustomer lc=loandao.findByaccountNumber(res);	
+		if(lc==null)
+		{
+			model.addAttribute("message", "There is no customer");
+			return "employeehome";
+		}
+		model.addAttribute("card",lc.getCard());
+		return "deactivates";
+	}
+		
+		
+		
+	
+	
+	
+	
+	@PostMapping("/blockcard")
+	public String deActivate(@RequestParam("reason") String rs,Model model,HttpSession session)
 	{
 		Date d=new Date();
 		int res=(int) session.getAttribute("account");
@@ -318,7 +339,7 @@ session.setAttribute("account", res);
 		{
 			lc.getCard().setCardStatus("deactive");
 			lc.getCard().setExpDate(d);
-			lc.getCard().setReActivationReason("failed to pay");
+			lc.getCard().setReActivationReason(rs);
 			LoanCustomer cardloan=loandao.save(lc);
 			if(cardloan!=null)
 			{

@@ -34,7 +34,7 @@ document. getElementById("btn1"). disabled = true;
 
 <div align="center" style="padding-top:45px; ">
 <h1 style="font-family: initial;color: red;font-size: 25px;">Card details</h1>
-<form  action="/emp/reactive" method="post" onmouseover="return disButton()">
+<form  action="/emp/blockcard" method="post" >
 <table border="2">
 <tr>
   <td>card number</td> 
@@ -64,11 +64,12 @@ document. getElementById("btn1"). disabled = true;
 
 </table>
 
- <input type="submit" value="reactivate" id="btn1" style="background-color:green;border-radius:5px;"/> 
+ <input type="submit" value="deactivate" id="btn1" style="background-color:red;border-radius:5px;"/> 
  
-  
+
+
 </form>
-<a href="/emp/setDec?id=${card.accountNumber}"><button style="background-color:red;border-radius:5px;" id="btn2">Deactivate</button></a>
+
 </div>
 
 <%
