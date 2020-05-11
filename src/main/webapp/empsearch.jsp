@@ -18,9 +18,7 @@
 <div align="center" style="background-color:burlywood;height:600px;margin-top: -10px;">
 <h1 align="center" style="font-family:monospace;color:red;font-size:25px;">Defaulter</h1>
 <table border="2">
-<tr>
-<th>Account number</th>
-</tr>
+
 
 <tr>
 <td ><a href="/emp/details?id=${cust.accountNumber}" style="color: black;"><c:out value="${cust.accountNumber}"></c:out></a></td>

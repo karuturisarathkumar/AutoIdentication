@@ -14,7 +14,7 @@
 
 <div align="center">
 <form action="/emp/getAccountNumber" method="post">
-<input type="text" placeholder="Account Number" style="padding: 10px;height: 15px;width: 200px;border-radius: 10px;border-color:green" name="num">
+<input type="text" placeholder="Account Number" style="padding: 10px;height: 15px;width: 200px;border-radius: 10px;border-color:green" name="num" required>
 <input type="submit" value="search" style="height:20px;width: 50px;border-radius: 10px;background-color: blue;">
 </form>
 </div>

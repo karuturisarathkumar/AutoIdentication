@@ -232,8 +232,16 @@ public String adminVerifyRegistration(@ModelAttribute("admin") Admin ad,@ModelAt
 				cl.add(customer);
 			}
 		}
+		if(cl.isEmpty())
+		{
+			model.addAttribute("message", "no auto defaulters");
+			return "sampleadminhome";
+		}
+		else
+		{
 		model.addAttribute("customerList", cl);
 		return "Adminworkofcustomer";
+		}
 	}
 
 	@GetMapping("/manualcustlist")
@@ -250,8 +258,16 @@ public String adminVerifyRegistration(@ModelAttribute("admin") Admin ad,@ModelAt
 				cl.add(customer);
 			}
 		}
+		if(cl.isEmpty())
+		{
+			model.addAttribute("message", "no manual defaulters");
+			return "sampleadminhome";
+		}
+		else
+		{
 		model.addAttribute("customerList", cl);
 		return "Adminworkofcustomer";
+		}
 	}
 
 	@GetMapping("/activationList")
@@ -308,8 +324,16 @@ public String adminVerifyRegistration(@ModelAttribute("admin") Admin ad,@ModelAt
 				cl.add(customer);
 			}
 		}
+		if(cl.isEmpty())
+		{
+			model.addAttribute("message", "no auto defaulters");
+			return "sampleadminhome";
+		}
+		else
+		{
 		model.addAttribute("custList", cl);
 		return "Adminworkofcustomer";
+		}
 	}
 
 

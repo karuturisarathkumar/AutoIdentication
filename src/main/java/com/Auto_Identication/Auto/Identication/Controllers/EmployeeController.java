@@ -61,7 +61,7 @@ public String empLoginVerify(@ModelAttribute("bankemployeelogin") BankEmployeeLo
 		}
 		else if(res==3)
 		{
-			model.addAttribute("message", "please check thye details");
+			model.addAttribute("message", "please check the details");
 			return "login";
 		}
 		model.addAttribute("message","you are not registered please regsiter");

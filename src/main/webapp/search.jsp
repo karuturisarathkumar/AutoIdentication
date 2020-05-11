@@ -9,7 +9,7 @@
 <body>
 <div align="center" style="padding-top: 80px; ">
 <form action="/emp/getCard" method="post">
-<input type="text" placeholder="search" style="padding: 20px;height: 15px;width: 250px;border-color:green" name="number">
+<input type="text" placeholder="search" style="padding: 20px;height: 15px;width: 250px;border-color:green" name="number" required>
 <input type="submit" value="search" style="height:40px;width: 80px;border-radius: 10px;background-color: red;">
 </form>
 </div>
