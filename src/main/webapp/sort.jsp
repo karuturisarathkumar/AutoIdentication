@@ -14,7 +14,6 @@
 <select name="number" style="height: 40px" >
 <option value="accountNumber">account number</option>
 <option value="dues">dues</option>
-<option value="moneyPaid">amount paid</option>
 </select>
 <select name="order" style="height: 40px" >
 <option value="ass">Asscending</option>

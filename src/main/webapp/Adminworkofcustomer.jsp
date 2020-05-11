@@ -74,7 +74,7 @@ if(user==null)
 
 <div align="center" style="padding-top: 60px;">
 <form action="/admin/getAccount" method="post">
-<input type="text" placeholder="Account Number" style="padding: 10px;height: 15px;width: 200px;border-radius: 10px;border-color:green" name="num">
+<input type="text" placeholder="Account Number" style="padding: 10px;height: 15px;width: 200px;border-radius: 10px;border-color:green" name="num" required>
 <input type="submit" value="search" style="height:20px;width: 50px;border-radius: 10px;background-color: blue;">
 </form>
 </div>
@@ -84,7 +84,6 @@ if(user==null)
 <select name="number" style="height: 40px" >
 <option value="accountNumber">account number</option>
 <option value="dues">dues</option>
-<option value="moneyPaid">amount paid</option>
 </select>
 <select name="order" style="height: 40px" >
 <option value="ass">Asscending</option>

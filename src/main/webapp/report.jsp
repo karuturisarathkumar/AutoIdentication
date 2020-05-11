@@ -25,7 +25,7 @@
  
  <tr>
   <td>no.of Re-activations</td>  
-  <td> <a href="/admin/activationList" style="color: black">${req}</a></td> 
+  <td> <a href="/admin/ativates" style="color: black">${req}</a></td> 
  </tr>
 </table>
 </div>

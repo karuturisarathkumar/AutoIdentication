@@ -755,6 +755,7 @@ LoanCustomer lc=loandao.findByaccountNumber(res);
 lc.setStatus("defaulter");
 if(lc.getDues()>=8)
 {
+
 	lc.setBorrowerRating(10);
 	lc.setAccuralStatus(5);
 }
